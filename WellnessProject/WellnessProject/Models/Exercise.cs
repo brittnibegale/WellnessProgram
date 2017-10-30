@@ -18,6 +18,7 @@ namespace WellnessProject.Models
         public double VigorousDuration { get; set; }
         public double CurrentVigorousDuration { get; set; }
         public double? VigorousNumberToAdd { get; set; }
+        public bool Pending { get; set; }
 
     }
 }

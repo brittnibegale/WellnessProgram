@@ -23,5 +23,6 @@ namespace WellnessProject.Models
 
         [Display(Name = "Personal Total Yearly Points")]
         public double YearlyPoints { get; set; }
+        public bool Pending { get; set; }
     }
 }

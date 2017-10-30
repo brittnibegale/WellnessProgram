@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -24,6 +25,8 @@ namespace WellnessProject.Models
         [Display(Name = "Input the code you were given after your screening here")]
         public string Code { get; set; }
 
+        public DateTime Day { get; set; }
+
         [ForeignKey("HealthId")]
         public HealthInfo HealthInfo { get; set; }
         public int HealthId { get; set; }
@@ -39,6 +42,7 @@ namespace WellnessProject.Models
         [ForeignKey("GroupId")]
         public Group Group { get; set; }
         public int GroupId { get; set; }
+
         [ForeignKey("AchievementId")]
         public Achievement Achievement { get; set; }
         public int AchievementId { get; set; }
@@ -55,6 +59,12 @@ namespace WellnessProject.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Group>Groups { get; set; }
+        public DbSet<HealthInfo>HealthInfos { get; set; }
+        public DbSet<Exercise>Exercises { get; set; }
+        public DbSet<Calories>Calories { get; set; }
+        public DbSet<Achievement>Achievements { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

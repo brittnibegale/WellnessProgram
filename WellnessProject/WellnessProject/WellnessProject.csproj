@@ -196,6 +196,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AchievementsController.cs" />
+    <Compile Include="Controllers\CaloriesController.cs" />
+    <Compile Include="Controllers\ExercisesController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
+    <Compile Include="Controllers\HealthInfoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +213,10 @@
     <Compile Include="Migrations\201710302105053_added all models.cs" />
     <Compile Include="Migrations\201710302105053_added all models.Designer.cs">
       <DependentUpon>201710302105053_added all models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710302208379_added pending and day.cs" />
+    <Compile Include="Migrations\201710302208379_added pending and day.Designer.cs">
+      <DependentUpon>201710302208379_added pending and day.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -282,6 +291,31 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Calories\Create.cshtml" />
+    <Content Include="Views\Calories\Delete.cshtml" />
+    <Content Include="Views\Calories\Details.cshtml" />
+    <Content Include="Views\Calories\Edit.cshtml" />
+    <Content Include="Views\Calories\Index.cshtml" />
+    <Content Include="Views\Achievements\Create.cshtml" />
+    <Content Include="Views\Achievements\Delete.cshtml" />
+    <Content Include="Views\Achievements\Details.cshtml" />
+    <Content Include="Views\Achievements\Edit.cshtml" />
+    <Content Include="Views\Achievements\Index.cshtml" />
+    <Content Include="Views\HealthInfoes\Create.cshtml" />
+    <Content Include="Views\HealthInfoes\Delete.cshtml" />
+    <Content Include="Views\HealthInfoes\Details.cshtml" />
+    <Content Include="Views\HealthInfoes\Edit.cshtml" />
+    <Content Include="Views\HealthInfoes\Index.cshtml" />
+    <Content Include="Views\Groups\Create.cshtml" />
+    <Content Include="Views\Groups\Delete.cshtml" />
+    <Content Include="Views\Groups\Details.cshtml" />
+    <Content Include="Views\Groups\Edit.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\Exercises\Create.cshtml" />
+    <Content Include="Views\Exercises\Delete.cshtml" />
+    <Content Include="Views\Exercises\Details.cshtml" />
+    <Content Include="Views\Exercises\Edit.cshtml" />
+    <Content Include="Views\Exercises\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710302105053_added all models.resx">
       <DependentUpon>201710302105053_added all models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710302208379_added pending and day.resx">
+      <DependentUpon>201710302208379_added pending and day.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
