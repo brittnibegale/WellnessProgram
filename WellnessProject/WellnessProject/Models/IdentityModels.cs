@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -26,26 +27,47 @@ namespace WellnessProject.Models
         public string Code { get; set; }
 
         public DateTime Day { get; set; }
+        public double? CurrentVigorousDuration { get; set; }
+        public double? VigorousNumberToAdd { get; set; }
+        public bool ExercisePending { get; set; }
+        public double? CurrentModerateDuration { get; set; }
+        public double? ModerateNumberToAdd { get; set; }
+
+        [Display(Name = "Calorie Goal")]
+        public double? CalorieGoal { get; set; }
+
+        [Display(Name = "Today's Calorie Intake")]
+        public double? CurrentCalorieCount { get; set; }
+
+        public double? CaloriesToAdd { get; set; }
+
+        [Display(Name = "Personal Monthly Points")]
+        public double? CalorieMonthlyPoints { get; set; }
+
+        [Display(Name = "Personal Total Yearly Points")]
+        public double? CalorieYearlyPoints { get; set; }
+        public bool CaloriesPending { get; set; }
+
+        [Display(Name = "Moderate Cardio Goal")]
+        public double ModerateDuration { get; set; }
+
+        [Display(Name = "Vigorous Cardio Goal")]
+        public double VigorousDuration { get; set; }
+
+        [Display(Name = "Captain Role")]
+        public bool Captain { get; set; }
+
+        [Display(Name = "Achievements")]
+        public List<string>Achievements { get; set; }
 
         [ForeignKey("HealthId")]
         public HealthInfo HealthInfo { get; set; }
-        public int HealthId { get; set; }
-
-        [ForeignKey("CalorieId")]
-        public Calories Calories { get; set; }
-        public int CalorieId { get; set; }
-
-        [ForeignKey("ExerciseId")]
-        public Exercise Exercise { get; set; }
-        public int ExerciseId { get; set; }
+        public int? HealthId { get; set; }
 
         [ForeignKey("GroupId")]
         public Group Group { get; set; }
         public int GroupId { get; set; }
-
-        [ForeignKey("AchievementId")]
-        public Achievement Achievement { get; set; }
-        public int AchievementId { get; set; }
+        public IEnumerable<Group>Groups { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -62,7 +84,6 @@ namespace WellnessProject.Models
         public DbSet<Group>Groups { get; set; }
         public DbSet<HealthInfo>HealthInfos { get; set; }
         public DbSet<Exercise>Exercises { get; set; }
-        public DbSet<Calories>Calories { get; set; }
         public DbSet<Achievement>Achievements { get; set; }
 
         public ApplicationDbContext()

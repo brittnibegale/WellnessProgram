@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WellnessProject.Models
 {
@@ -64,10 +65,19 @@ namespace WellnessProject.Models
 
     public class RegisterViewModel
     {
+        [Key]
+        [Required]
+        [Display(Name = "UserRoles")]
+        public string UserRoles { get; set; }
+       
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -79,6 +89,23 @@ namespace WellnessProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Your Unique Code")]
+        public string Code { get; set; }
+
+        [ForeignKey("GroupId")]
+        public Group Group { get; set; }
+        public int GroupId { get; set; }
+        public IEnumerable<Group> Groups { get; set; }
     }
 
     public class ResetPasswordViewModel

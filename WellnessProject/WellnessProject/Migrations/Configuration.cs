@@ -1,3 +1,5 @@
+using WellnessProject.Models;
+
 namespace WellnessProject.Migrations
 {
     using System;
@@ -14,6 +16,11 @@ namespace WellnessProject.Migrations
 
         protected override void Seed(WellnessProject.Models.ApplicationDbContext context)
         {
+            context.Groups.AddOrUpdate(
+                p => p.GroupName,
+                new Group { GroupName = "Group1"},
+                new Group { GroupName = "Group2"}
+                );
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

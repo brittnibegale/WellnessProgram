@@ -197,8 +197,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AchievementsController.cs" />
-    <Compile Include="Controllers\CaloriesController.cs" />
-    <Compile Include="Controllers\ExercisesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HealthInfoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,10 +216,21 @@
     <Compile Include="Migrations\201710302208379_added pending and day.Designer.cs">
       <DependentUpon>201710302208379_added pending and day.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710311422488_role.cs" />
+    <Compile Include="Migrations\201710311422488_role.Designer.cs">
+      <DependentUpon>201710311422488_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311634274_changed indenty model.cs" />
+    <Compile Include="Migrations\201710311634274_changed indenty model.Designer.cs">
+      <DependentUpon>201710311634274_changed indenty model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710312048300_deleted one name.cs" />
+    <Compile Include="Migrations\201710312048300_deleted one name.Designer.cs">
+      <DependentUpon>201710312048300_deleted one name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Achievement.cs" />
-    <Compile Include="Models\Calories.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\HealthInfo.cs" />
@@ -311,11 +320,6 @@
     <Content Include="Views\Groups\Details.cshtml" />
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
-    <Content Include="Views\Exercises\Create.cshtml" />
-    <Content Include="Views\Exercises\Delete.cshtml" />
-    <Content Include="Views\Exercises\Details.cshtml" />
-    <Content Include="Views\Exercises\Edit.cshtml" />
-    <Content Include="Views\Exercises\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,6 +341,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710302208379_added pending and day.resx">
       <DependentUpon>201710302208379_added pending and day.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311422488_role.resx">
+      <DependentUpon>201710311422488_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311634274_changed indenty model.resx">
+      <DependentUpon>201710311634274_changed indenty model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710312048300_deleted one name.resx">
+      <DependentUpon>201710312048300_deleted one name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

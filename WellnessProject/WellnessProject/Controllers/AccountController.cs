@@ -17,9 +17,11 @@ namespace WellnessProject.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext context;
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -139,7 +141,11 @@ namespace WellnessProject.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(),"Name", "Name");
+            RegisterViewModel model = new RegisterViewModel();
+            model.Groups = context.Groups.Where(m => m.GroupMembers.Count != 4).ToList();
+            model.UserRoles = "Registered User";
+            return View(model);
         }
 
         //
@@ -151,7 +157,10 @@ namespace WellnessProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Code = model.Code, Captain = false, Day = DateTime.Today, FirstName = model.FirstName, LastName = model.LastName, ExercisePending = false, CaloriesPending = false, ModerateDuration = 150, VigorousDuration = 75, GroupId = model.GroupId};
+                var healthId = context.HealthInfos.Where(m => m.UniqueCode == user.Code).Select(m => m.Id);
+                //search the encrypted database for healthId and then add that id to the user
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -162,9 +171,11 @@ namespace WellnessProject.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
 
                     return RedirectToAction("Index", "Home");
                 }
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 
