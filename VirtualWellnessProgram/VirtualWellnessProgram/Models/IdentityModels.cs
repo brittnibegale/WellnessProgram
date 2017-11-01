@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -14,6 +15,9 @@ namespace VirtualWellnessProgram.Models
         [Required]
         [Display(Name = "Input the code you were given here")]
         public string Code { get; set; }
+
+  
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -36,7 +40,7 @@ namespace VirtualWellnessProgram.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<Groups> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; }
         public DbSet<HealthInfo> HealthInfoes { get; set; }
         public DbSet<Customer>Customers { get; set; }
 

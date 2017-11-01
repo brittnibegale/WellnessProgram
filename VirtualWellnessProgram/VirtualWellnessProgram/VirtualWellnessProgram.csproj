@@ -196,7 +196,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HealthInfoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -211,10 +210,14 @@
     <Compile Include="Migrations\201711011831426_added code to identity.Designer.cs">
       <DependentUpon>201711011831426_added code to identity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711012008276_deleted appuser foreign key.cs" />
+    <Compile Include="Migrations\201711012008276_deleted appuser foreign key.Designer.cs">
+      <DependentUpon>201711012008276_deleted appuser foreign key.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\Groups.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\HealthInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -310,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711011831426_added code to identity.resx">
       <DependentUpon>201711011831426_added code to identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711012008276_deleted appuser foreign key.resx">
+      <DependentUpon>201711012008276_deleted appuser foreign key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

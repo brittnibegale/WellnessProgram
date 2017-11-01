@@ -6,10 +6,11 @@ using System.Web;
 
 namespace VirtualWellnessProgram.Models
 {
-    public class Groups
+    public class Group
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [Display(Name = "Group Name")]
         public string GroupName { get; set; }
@@ -23,6 +24,7 @@ namespace VirtualWellnessProgram.Models
         [Display(Name = "Total Points")]
         public double TotalPoints { get; set; }
 
-        public List<ApplicationUser> GroupMembers { get; set; }
+        public List<Customer> GroupMembers { get; set; }
+
     }
 }
