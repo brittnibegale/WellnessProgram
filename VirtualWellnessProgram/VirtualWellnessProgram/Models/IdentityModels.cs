@@ -25,6 +25,7 @@ namespace VirtualWellnessProgram.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -34,5 +35,10 @@ namespace VirtualWellnessProgram.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Groups> Groups { get; set; }
+        public DbSet<HealthInfo> HealthInfoes { get; set; }
+        public DbSet<Customer>Customers { get; set; }
+
     }
 }
