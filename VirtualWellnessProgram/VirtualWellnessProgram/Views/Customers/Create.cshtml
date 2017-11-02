@@ -36,6 +36,7 @@
                 @Html.DropDownListFor( m => m.customer.GroupId, new SelectList(Model.groups, "Id", "GroupName"), "Select Group", new {@class = "form-control"})
             </div>
         </div>
+        @Html.HiddenFor(m => m.user)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -15,11 +15,8 @@ namespace VirtualWellnessProgram.MakeNewUserGoals
             db = new ApplicationDbContext();
         }
 
-        public double Calorie(Customer customer)
+        public double Calorie(int healthid)
         {
-            string health = customer.HealthId.ToString();
-            int healthid = Int32.Parse(health);
-
             int age = GetAge(healthid);
             double bodyFat = GetBodyFat(healthid);
             string gender = GetGender(healthid);
