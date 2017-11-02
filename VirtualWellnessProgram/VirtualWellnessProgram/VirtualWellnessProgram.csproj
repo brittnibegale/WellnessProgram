@@ -315,6 +315,8 @@
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Customers\ChangeGroupId.cshtml" />
     <Content Include="Views\Customers\EditGroupId.cshtml" />
+    <Content Include="Views\Customers\ChangeCaptainStatus.cshtml" />
+    <Content Include="Views\Customers\EditCaptainStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

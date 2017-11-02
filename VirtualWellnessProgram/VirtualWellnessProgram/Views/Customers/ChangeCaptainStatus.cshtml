@@ -1,0 +1,41 @@
+﻿@model IEnumerable<VirtualWellnessProgram.Models.Customer>
+@{
+    ViewBag.Title = "ChangeCaptainStatus";
+}
+
+<h2>Captain Status Change</h2>
+<h4>Choose which person you would like to change the captain status on</h4>
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.LastName)
+        </td>
+        <td>
+            @Html.DisplayNameFor(m => m.Captain)
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Captain)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCaptainStatus", new {id = item.Id})
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

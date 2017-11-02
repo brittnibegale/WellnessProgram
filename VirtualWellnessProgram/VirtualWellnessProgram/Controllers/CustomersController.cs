@@ -197,6 +197,32 @@ namespace VirtualWellnessProgram.Controllers
             return View(customer);
         }
 
+        public ActionResult ChangeCaptainStatus()
+        {
+            return View(db.Customers.ToList());
+        }
+
+        public ActionResult EditCaptainStatus(int? id)
+        {
+            Customer customer = db.Customers.Find(id);
+
+            return View(customer);
+        }
+
+        [HttpPost]
+        public ActionResult EditCaptainStatus(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ChangeCaptainStatus");
+            }
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Code", customer.ApplicationUserId);
+            ViewBag.GroupId = new SelectList(db.Groups, "Id", "GroupName", customer.GroupId);
+            ViewBag.HealthId = new SelectList(db.HealthInfoes, "Id", "UniqueCode", customer.HealthId);
+            return View(customer);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
