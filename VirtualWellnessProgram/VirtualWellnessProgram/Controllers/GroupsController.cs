@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VirtualWellnessProgram.Models;
+using VirtualWellnessProgram.Models.ViewModels;
 
 namespace VirtualWellnessProgram.Controllers
 {
@@ -38,6 +39,7 @@ namespace VirtualWellnessProgram.Controllers
         // GET: Groups/Create
         public ActionResult Create()
         {
+           
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace VirtualWellnessProgram.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,GroupName,GroupCaloriePoints,GroupExercisePoints,TotalPoints")] Group group)
+        public ActionResult Create(Group group)
         {
             if (ModelState.IsValid)
             {
