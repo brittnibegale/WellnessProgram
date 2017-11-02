@@ -4,22 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Choose Which Person You Would Like To Edit</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Group.GroupName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HealthInfo.UniqueCode)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -27,46 +15,7 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Day)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CurrentVigorousDuration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VigorousNumberToAdd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExercisePending)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CurrentModerateDuration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModerateNumberToAdd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CalorieGoal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CurrentCalorieCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CaloriesToAdd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CalorieMonthlyPoints)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CalorieYearlyPoints)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CaloriesPending)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModerateDuration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VigorousDuration)
+            @Html.DisplayNameFor(model => model.Group.GroupName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Captain)
@@ -77,61 +26,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Group.GroupName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HealthInfo.UniqueCode)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Day)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentVigorousDuration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VigorousNumberToAdd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExercisePending)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentModerateDuration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModerateNumberToAdd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CalorieGoal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentCalorieCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CaloriesToAdd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CalorieMonthlyPoints)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CalorieYearlyPoints)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CaloriesPending)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModerateDuration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VigorousDuration)
+            @Html.DisplayFor(modelItem => item.Group.GroupName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Captain)

@@ -1,0 +1,44 @@
+﻿@model VirtualWellnessProgram.Models.ViewModels.CustomerEditGroupIdViewModel
+@{
+    ViewBag.Title = "Change GroupId";
+}
+
+<h2>Change the Group of a Person</h2>
+<h3>Here is the list of all the avilable groups to add to and people in your current database</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Groups)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customers)
+        </th>
+    </tr>
+    @foreach (var item in Model.Customers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Group.GroupName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditGroupId", new {id = item.Id})
+            </td>
+        </tr>
+    }
+    @foreach (var item1 in Model.Groups)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item1.GroupName)
+            </td>
+        </tr>
+    }
+</table>
+

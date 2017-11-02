@@ -24,7 +24,5 @@ namespace VirtualWellnessProgram.Models
         [Display(Name = "Total Points")]
         public double TotalPoints { get; set; }
 
-        public List<Customer> GroupMembers { get; set; }
-
     }
 }

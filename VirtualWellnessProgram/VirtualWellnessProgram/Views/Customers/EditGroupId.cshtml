@@ -1,0 +1,55 @@
+﻿@model VirtualWellnessProgram.Models.Customer
+@{
+    ViewBag.Title = "EditGroupId";
+}
+
+<h2>Choose New Group for @Model.FirstName</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Group</h4>
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.FirstName)
+        @Html.HiddenFor(m => m.LastName)
+        @Html.HiddenFor(m => m.Day)
+        @Html.HiddenFor(m => m.CurrentVigorousDuration)
+        @Html.HiddenFor(m => m.VigorousNumberToAdd)
+        @Html.HiddenFor(m => m.ExercisePending)
+        @Html.HiddenFor(m => m.CurrentModerateDuration)
+        @Html.HiddenFor(m => m.ModerateNumberToAdd)
+        @Html.HiddenFor(m => m.CalorieGoal)
+        @Html.HiddenFor(m => m.CurrentCalorieCount)
+        @Html.HiddenFor(m => m.CaloriesToAdd)
+        @Html.HiddenFor(m => m.CalorieMonthlyPoints)
+        @Html.HiddenFor(m => m.CalorieYearlyPoints)
+        @Html.HiddenFor(m => m.CaloriesPending)
+        @Html.HiddenFor(m => m.ModerateDuration)
+        @Html.HiddenFor(m => m.VigorousDuration)
+        @Html.HiddenFor(m => m.Captain)
+        @Html.HiddenFor(m => m.Achievements)
+        @Html.HiddenFor(m => m.ApplicationUserId)
+        @Html.HiddenFor(m => m.HealthId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.GroupId, "GroupId", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownList("GroupId", null, htmlAttributes: new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.GroupId, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default"/>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

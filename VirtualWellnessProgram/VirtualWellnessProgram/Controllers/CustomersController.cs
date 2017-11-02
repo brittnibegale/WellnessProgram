@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using VirtualWellnessProgram.MakeNewUserGoals;
 using VirtualWellnessProgram.Models;
+using VirtualWellnessProgram.Models.ViewModels;
 using VirtualWellnessProgram.Models.View_Models;
 
 namespace VirtualWellnessProgram.Controllers
@@ -164,6 +165,36 @@ namespace VirtualWellnessProgram.Controllers
             db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangeGroupId()
+        {
+            CustomerEditGroupIdViewModel viewModel = new CustomerEditGroupIdViewModel();
+            viewModel.Customers = db.Customers.ToList();
+            viewModel.Groups = db.Groups.ToList();
+            return View(viewModel);
+        }
+
+        public ActionResult EditGroupId(int? id)
+        {
+            Customer customer = db.Customers.Find(id);
+
+            return View(customer);
+        }
+
+        [HttpPost]
+        public ActionResult EditGroupId(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ChangeGroupId");
+            }
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Code", customer.ApplicationUserId);
+            ViewBag.GroupId = new SelectList(db.Groups, "Id", "GroupName", customer.GroupId);
+            ViewBag.HealthId = new SelectList(db.HealthInfoes, "Id", "UniqueCode", customer.HealthId);
+            return View(customer);
         }
 
         protected override void Dispose(bool disposing)
