@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Virtual Wellness Program</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -26,21 +26,20 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Edit Groups", "Edit", "Groups")</li>
                         <li>@Html.ActionLink("Create Group", "Create", "Groups")</li>
-                        <li>@Html.ActionLink("Assign Captain Role", "Index", "Manage")</li>
+                        <li>@Html.ActionLink("Assign Captain Role", "Index", "Customers")</li>
                         <li>@Html.ActionLink("Alerts", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Add CSV File", "Index", "HealthInfoes")</li>
+                        <li>@Html.ActionLink("Add CSV File", "Create", "HealthInfoes")</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>
         </div>
     }
-    //else if (User.IsInRole("Registered User"))
-    //{
-        @*ApplicationDbContext db = new ApplicationDbContext();
+    else if (User.IsInRole("Registered User"))
+    {
+        ApplicationDbContext db = new ApplicationDbContext();
         var username = User.Identity.Name;
-        string currentUserIdString = db.Users.Where(m => m.UserName == username).Select(n => n.Id).ToString();
-        int currentUserId = Int32.Parse(currentUserIdString);
+        string currentUserId = db.Users.Where(m => m.UserName == username).Select(n => n.Id).ToString();
         var currentUser = db.Customers.Where(m => m.ApplicationUserId == currentUserId).First();
 
         if (currentUser.Captain == true)
@@ -89,7 +88,7 @@
                 </div>
             </div>
         }
-    }*@
+    }
     else
     {
         <div class="navbar navbar-inverse navbar-fixed-top">

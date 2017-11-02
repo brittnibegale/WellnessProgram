@@ -55,12 +55,17 @@ namespace VirtualWellnessProgram.Models
         [Display(Name = "Achievements")]
         public List<string> Achievements { get; set; }
 
+        [ForeignKey("ApplicationUserId")]
+        public ApplicationUser ApplicationUser { get; set; }
+        public string ApplicationUserId { get; set; }
+
         [ForeignKey("HealthId")]
         public HealthInfo HealthInfo { get; set; }
         public int? HealthId { get; set; }
 
         [ForeignKey("GroupId")]
         public Group Group { get; set; }
+        [Display(Name = "Group")]
         public int GroupId { get; set; }
         public IEnumerable<Group> Groups { get; set; }
     }

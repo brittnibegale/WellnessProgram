@@ -1,3 +1,5 @@
+using VirtualWellnessProgram.Models;
+
 namespace VirtualWellnessProgram.Migrations
 {
     using System;
@@ -14,6 +16,12 @@ namespace VirtualWellnessProgram.Migrations
 
         protected override void Seed(VirtualWellnessProgram.Models.ApplicationDbContext context)
         {
+            context.Groups.AddOrUpdate(
+                p => p.GroupName,
+                new Group { GroupName = "Group1"},
+                new Group { GroupName = "Group2"}
+              
+            );
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

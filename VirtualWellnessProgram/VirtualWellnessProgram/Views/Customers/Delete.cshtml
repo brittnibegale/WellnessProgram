@@ -1,0 +1,184 @@
+﻿@model VirtualWellnessProgram.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Group.GroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Group.GroupName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HealthInfo.UniqueCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HealthInfo.UniqueCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentVigorousDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentVigorousDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VigorousNumberToAdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VigorousNumberToAdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExercisePending)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExercisePending)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentModerateDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentModerateDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModerateNumberToAdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModerateNumberToAdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CalorieGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CalorieGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentCalorieCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentCalorieCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaloriesToAdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaloriesToAdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CalorieMonthlyPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CalorieMonthlyPoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CalorieYearlyPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CalorieYearlyPoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaloriesPending)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaloriesPending)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModerateDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModerateDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VigorousDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VigorousDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Captain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Captain)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
