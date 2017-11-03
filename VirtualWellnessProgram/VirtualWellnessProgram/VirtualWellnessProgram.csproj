@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201711031631301_changed value type of healthinfo to strings.Designer.cs">
       <DependentUpon>201711031631301_changed value type of healthinfo to strings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711032132325_changed string.cs" />
+    <Compile Include="Migrations\201711032132325_changed string.Designer.cs">
+      <DependentUpon>201711032132325_changed string.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -359,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711031631301_changed value type of healthinfo to strings.resx">
       <DependentUpon>201711031631301_changed value type of healthinfo to strings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711032132325_changed string.resx">
+      <DependentUpon>201711032132325_changed string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

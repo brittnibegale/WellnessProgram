@@ -32,7 +32,7 @@ namespace VirtualWellnessProgram.Models
 
         [Required]
         [Display(Name = "Are they a smoker?")]
-        public bool Smoker { get; set; }
+        public string Smoker { get; set; }
 
         [Required]
         [Display(Name = "Body Fat %")]

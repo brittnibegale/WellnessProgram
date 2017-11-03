@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LumenWorks.Framework.IO.Csv;
+using VirtualWellnessProgram.Models;
 using VirtualWellnessProgram.Models.ViewModels;
 
 namespace VirtualWellnessProgram.Controllers
@@ -75,6 +76,7 @@ namespace VirtualWellnessProgram.Controllers
         {
             HomeVerifyDatabaseViewModel viewModel = new HomeVerifyDatabaseViewModel();
             viewModel.Database = TempData["myObj"] as DataTable;
+            TempData.Keep("myObj");
             viewModel.Verified = true;
             
             return View(viewModel);
@@ -86,11 +88,36 @@ namespace VirtualWellnessProgram.Controllers
         {
             if (viewModel.Verified == true)
             {
-                foreach (DataRow row in viewModel.Database.Rows)
+                ApplicationDbContext db = new ApplicationDbContext();
+                DataTable DataTable = TempData["myObj"] as DataTable;
+                List<string>Result = new List<string>();
+
+                foreach (DataRow row in DataTable.Rows)
                 {
-                    Encryption.Encrytion.Encrypt(row[0].ToString());
+                    foreach (DataColumn col in DataTable.Columns)
+                    {
+                       var encryptedWords = Encryption.Encrytion.Encrypt(row[col.ColumnName].ToString());
+                        Result.Add(encryptedWords);
+                    }
                 }
-                
+
+                HealthInfo healthInfo = new HealthInfo();
+                healthInfo.UniqueCode = Result[0];
+                healthInfo.Age = Result[1];
+                healthInfo.Gender = Result[2];
+                healthInfo.Height = Result[3];
+                healthInfo.Weight = Result[4];
+                healthInfo.Smoker = Result[5];
+                healthInfo.BodyFatAmt = Result[6];
+                healthInfo.Hdl = Result[7];
+                healthInfo.Ldl = Result[8];
+                healthInfo.CholesterolTotal = Result[9];
+                healthInfo.Triglycerides = Result[10];
+
+                db.HealthInfoes.Add(healthInfo);
+                db.SaveChanges();
+
+
             }
             else if (viewModel.Verified == false)
             {
