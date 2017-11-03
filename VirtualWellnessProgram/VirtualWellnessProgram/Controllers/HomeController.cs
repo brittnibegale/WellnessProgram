@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LumenWorks.Framework.IO.Csv;
+using VirtualWellnessProgram.Models.ViewModels;
 
 namespace VirtualWellnessProgram.Controllers
 {
@@ -37,7 +38,6 @@ namespace VirtualWellnessProgram.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public ActionResult Upload(HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
@@ -52,7 +52,10 @@ namespace VirtualWellnessProgram.Controllers
                         {
                             csvTable.Load(csvReader);
                         }
-                        return View(csvTable);
+                        
+                        TempData["myObj"] = csvTable;
+
+                        return RedirectToAction("VarifyDatatable");
                     }
                     else
                     {
@@ -64,6 +67,34 @@ namespace VirtualWellnessProgram.Controllers
                 {
                     ModelState.AddModelError("File", "Please Upload Your file");
                 }
+            }
+            return View();
+        }
+
+        public ActionResult VarifyDatatable()
+        {
+            HomeVerifyDatabaseViewModel viewModel = new HomeVerifyDatabaseViewModel();
+            viewModel.Database = TempData["myObj"] as DataTable;
+            viewModel.Verified = true;
+            
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VarifyDatatable(HomeVerifyDatabaseViewModel viewModel)
+        {
+            if (viewModel.Verified == true)
+            {
+                foreach (DataRow row in viewModel.Database.Rows)
+                {
+                    Encryption.Encrytion.Encrypt(row[0].ToString());
+                }
+                
+            }
+            else if (viewModel.Verified == false)
+            {
+                
             }
             return View();
         }

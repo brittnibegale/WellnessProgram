@@ -207,6 +207,7 @@ namespace VirtualWellnessProgram.Controllers
             Customer customer = db.Customers.Find(id);
 
             return View(customer);
+           
         }
 
         [HttpPost]

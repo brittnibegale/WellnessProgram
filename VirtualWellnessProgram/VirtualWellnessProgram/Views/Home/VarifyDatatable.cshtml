@@ -1,0 +1,59 @@
+﻿@model VirtualWellnessProgram.Models.ViewModels.HomeVerifyDatabaseViewModel
+
+@using System.Data
+@{
+    ViewBag.Title = "VerifyDatatable";
+}
+
+<h2>Verify This Datatable</h2>
+<hr />
+
+<table class="table">
+    <thead>
+    <tr>
+        @foreach (DataColumn col in Model.Database.Columns)
+        {
+            <th>@col.ColumnName</th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (DataRow row in Model.Database.Rows)
+    {
+        <tr>
+            @foreach (DataColumn col in Model.Database.Columns)
+            {
+                <td>@row[col.ColumnName]</td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Check for Correct Information</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(m => m.Verified, new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.Verified)
+                    @Html.ValidationMessageFor(m =>m.Verified, "", new {@class="text-danger"})
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default"/>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

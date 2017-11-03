@@ -16,7 +16,7 @@ namespace VirtualWellnessProgram.Models
 
         [Required]
         [Display(Name = "Age")]
-        public int Age { get; set; }
+        public string Age { get; set; }
 
         [Required]
         [Display(Name = "Gender")]
@@ -24,11 +24,11 @@ namespace VirtualWellnessProgram.Models
 
         [Required]
         [Display(Name = "Height")]
-        public double Height { get; set; }
+        public string Height { get; set; }
 
         [Required]
         [Display(Name = "Weight")]
-        public double Weight { get; set; }
+        public string Weight { get; set; }
 
         [Required]
         [Display(Name = "Are they a smoker?")]
@@ -36,22 +36,22 @@ namespace VirtualWellnessProgram.Models
 
         [Required]
         [Display(Name = "Body Fat %")]
-        public double BodyFatAmt { get; set; }
+        public string BodyFatAmt { get; set; }
 
         [Required]
         [Display(Name = "High Density Lipoprotein Amount")]
-        public double Hdl { get; set; }
+        public string Hdl { get; set; }
 
         [Required]
         [Display(Name = "Low Density Lipoprotein Amount")]
-        public double Ldl { get; set; }
+        public string Ldl { get; set; }
 
         [Required]
         [Display(Name = "Total Cholesterol Level")]
-        public double CholesterolTotal { get; set; }
+        public string CholesterolTotal { get; set; }
 
         [Required]
         [Display(Name = "Total Triglyeride level")]
-        public double Triglycerides { get; set; }
+        public string Triglycerides { get; set; }
     }
 }
