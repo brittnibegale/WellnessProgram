@@ -29,6 +29,8 @@
                         <li>@Html.ActionLink("Manage Captain Roles", "ChangeCaptainStatus", "Customers")</li>
                         <li>@Html.ActionLink("Alerts", "Index", "Home")</li>
                         <li>@Html.ActionLink("Add CSV File", "Upload", "Home")</li>
+                        <li>@Html.ActionLink("Requests", "Index", "Alerts")</li>
+                        <li>@Html.ActionLink("Delete User", "Index", "Customers")</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -57,8 +59,9 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Add Food", "About", "Home")</li>
+                            <li>@Html.ActionLink("Add Exercise", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Request Group Change", "Create", "Alerts")</li>
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>

@@ -43,6 +43,7 @@ namespace VirtualWellnessProgram.Models
         public DbSet<Group> Groups { get; set; }
         public DbSet<HealthInfo> HealthInfoes { get; set; }
         public DbSet<Customer>Customers { get; set; }
+        public DbSet<Alert>Alerts { get; set; }
 
     }
 }

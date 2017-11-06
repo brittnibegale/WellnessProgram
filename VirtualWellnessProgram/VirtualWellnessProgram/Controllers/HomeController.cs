@@ -102,7 +102,7 @@ namespace VirtualWellnessProgram.Controllers
                 }
 
                 HealthInfo healthInfo = new HealthInfo();
-                healthInfo.UniqueCode = Result[0];
+                healthInfo.UniqueCode = Encryption.Encrytion.Decrypt(Result[0]);
                 healthInfo.Age = Result[1];
                 healthInfo.Gender = Result[2];
                 healthInfo.Height = Result[3];
@@ -117,12 +117,19 @@ namespace VirtualWellnessProgram.Controllers
                 db.HealthInfoes.Add(healthInfo);
                 db.SaveChanges();
 
+                RedirectToAction("UploadComplete");
+
 
             }
             else if (viewModel.Verified == false)
             {
-                
+                RedirectToAction("Upload");
             }
+            return View();
+        }
+
+        public ActionResult UploadComplete()
+        {
             return View();
         }
     }

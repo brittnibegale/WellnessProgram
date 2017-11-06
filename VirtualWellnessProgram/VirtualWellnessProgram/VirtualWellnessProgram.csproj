@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HealthInfoesController.cs" />
@@ -238,8 +239,21 @@
     <Compile Include="Migrations\201711032132325_changed string.Designer.cs">
       <DependentUpon>201711032132325_changed string.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711061522281_alerts.cs" />
+    <Compile Include="Migrations\201711061522281_alerts.Designer.cs">
+      <DependentUpon>201711061522281_alerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061523335_alerts1.cs" />
+    <Compile Include="Migrations\201711061523335_alerts1.Designer.cs">
+      <DependentUpon>201711061523335_alerts1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061632597_foreginkey.cs" />
+    <Compile Include="Migrations\201711061632597_foreginkey.Designer.cs">
+      <DependentUpon>201711061632597_foreginkey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\HealthInfo.cs" />
@@ -333,6 +347,12 @@
     <Content Include="Views\Customers\EditCaptainStatus.cshtml" />
     <Content Include="Views\Home\Upload.cshtml" />
     <Content Include="Views\Home\VarifyDatatable.cshtml" />
+    <Content Include="Views\Home\UploadComplete.cshtml" />
+    <Content Include="Views\Alerts\Create.cshtml" />
+    <Content Include="Views\Alerts\Delete.cshtml" />
+    <Content Include="Views\Alerts\Details.cshtml" />
+    <Content Include="Views\Alerts\Edit.cshtml" />
+    <Content Include="Views\Alerts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,6 +386,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711032132325_changed string.resx">
       <DependentUpon>201711032132325_changed string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061522281_alerts.resx">
+      <DependentUpon>201711061522281_alerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061523335_alerts1.resx">
+      <DependentUpon>201711061523335_alerts1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061632597_foreginkey.resx">
+      <DependentUpon>201711061632597_foreginkey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
