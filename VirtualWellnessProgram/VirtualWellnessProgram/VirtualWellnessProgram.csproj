@@ -199,8 +199,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="CheckLoginUser\CheckDay.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlertsController.cs" />
+    <Compile Include="Controllers\CalorieAlertsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HealthInfoesController.cs" />
@@ -251,10 +253,24 @@
     <Compile Include="Migrations\201711061632597_foreginkey.Designer.cs">
       <DependentUpon>201711061632597_foreginkey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711062028116_added calorie alert.cs" />
+    <Compile Include="Migrations\201711062028116_added calorie alert.Designer.cs">
+      <DependentUpon>201711062028116_added calorie alert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711062129506_added exercise alert.cs" />
+    <Compile Include="Migrations\201711062129506_added exercise alert.Designer.cs">
+      <DependentUpon>201711062129506_added exercise alert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711062136282_added current.cs" />
+    <Compile Include="Migrations\201711062136282_added current.Designer.cs">
+      <DependentUpon>201711062136282_added current.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
+    <Compile Include="Models\CalorieAlert.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\ExerciseAlert.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\HealthInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -353,6 +369,11 @@
     <Content Include="Views\Alerts\Details.cshtml" />
     <Content Include="Views\Alerts\Edit.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
+    <Content Include="Views\CalorieAlerts\Create.cshtml" />
+    <Content Include="Views\CalorieAlerts\Delete.cshtml" />
+    <Content Include="Views\CalorieAlerts\Details.cshtml" />
+    <Content Include="Views\CalorieAlerts\Edit.cshtml" />
+    <Content Include="Views\CalorieAlerts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -395,6 +416,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711061632597_foreginkey.resx">
       <DependentUpon>201711061632597_foreginkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711062028116_added calorie alert.resx">
+      <DependentUpon>201711062028116_added calorie alert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711062129506_added exercise alert.resx">
+      <DependentUpon>201711062129506_added exercise alert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711062136282_added current.resx">
+      <DependentUpon>201711062136282_added current.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

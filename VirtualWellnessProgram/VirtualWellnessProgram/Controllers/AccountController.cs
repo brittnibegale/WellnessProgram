@@ -80,6 +80,8 @@ namespace VirtualWellnessProgram.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    CheckLoginUser.CheckDay checkLogin = new CheckLoginUser.CheckDay();
+                    checkLogin.FindCustomer(model.Email);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

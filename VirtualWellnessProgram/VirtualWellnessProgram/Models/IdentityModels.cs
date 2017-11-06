@@ -44,6 +44,10 @@ namespace VirtualWellnessProgram.Models
         public DbSet<HealthInfo> HealthInfoes { get; set; }
         public DbSet<Customer>Customers { get; set; }
         public DbSet<Alert>Alerts { get; set; }
+        public DbSet<CalorieAlert>CalorieAlerts { get; set; }
+        public DbSet<ExerciseAlert>ExerciseAlerts { get; set; }
+
+
 
     }
 }
