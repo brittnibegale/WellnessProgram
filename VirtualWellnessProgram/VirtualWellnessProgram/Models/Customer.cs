@@ -22,10 +22,8 @@ namespace VirtualWellnessProgram.Models
         public string LastName { get; set; }
 
         public DateTime Day { get; set; }
-        public double? CurrentVigorousDuration { get; set; }
         public List<double> VigorousNumberToAdd { get; set; }
         public bool ExercisePending { get; set; }
-        public double? CurrentModerateDuration { get; set; }
         public List<double> ModerateNumberToAdd { get; set; }
 
         [Display(Name = "Calorie Goal")]
@@ -37,10 +35,10 @@ namespace VirtualWellnessProgram.Models
         public List<double> CaloriesToAdd { get; set; }
 
         [Display(Name = "Personal Monthly Points")]
-        public double? CalorieMonthlyPoints { get; set; }
+        public double CalorieMonthlyPoints { get; set; }
 
         [Display(Name = "Personal Total Yearly Points")]
-        public double? CalorieYearlyPoints { get; set; }
+        public double CalorieYearlyPoints { get; set; }
         public bool CaloriesPending { get; set; }
 
         [Display(Name = "Moderate Cardio Goal")]
@@ -48,6 +46,10 @@ namespace VirtualWellnessProgram.Models
 
         [Display(Name = "Vigorous Cardio Goal")]
         public double VigorousDuration { get; set; }
+
+        public double ExerciseMonthlyPoints { get; set; }
+
+        public double ExerciseYearlyPoints { get; set; }
 
         [Display(Name = "Captain Role")]
         public bool Captain { get; set; }

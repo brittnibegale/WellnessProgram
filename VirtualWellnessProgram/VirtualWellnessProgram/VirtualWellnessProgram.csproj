@@ -265,6 +265,26 @@
     <Compile Include="Migrations\201711062136282_added current.Designer.cs">
       <DependentUpon>201711062136282_added current.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711071407237_added member.cs" />
+    <Compile Include="Migrations\201711071407237_added member.Designer.cs">
+      <DependentUpon>201711071407237_added member.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071408216_member.cs" />
+    <Compile Include="Migrations\201711071408216_member.Designer.cs">
+      <DependentUpon>201711071408216_member.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071413028_this.cs" />
+    <Compile Include="Migrations\201711071413028_this.Designer.cs">
+      <DependentUpon>201711071413028_this.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071436414_removed current exercises.cs" />
+    <Compile Include="Migrations\201711071436414_removed current exercises.Designer.cs">
+      <DependentUpon>201711071436414_removed current exercises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071517271_add yearly points.cs" />
+    <Compile Include="Migrations\201711071517271_add yearly points.Designer.cs">
+      <DependentUpon>201711071517271_add yearly points.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -277,6 +297,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\CustomerCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\CustomerEditGroupIdViewModel.cs" />
+    <Compile Include="Models\ViewModels\GroupPointsViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeVerifyDatabaseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -374,6 +395,7 @@
     <Content Include="Views\CalorieAlerts\Details.cshtml" />
     <Content Include="Views\CalorieAlerts\Edit.cshtml" />
     <Content Include="Views\CalorieAlerts\Index.cshtml" />
+    <Content Include="Views\Groups\Points.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -425,6 +447,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711062136282_added current.resx">
       <DependentUpon>201711062136282_added current.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071407237_added member.resx">
+      <DependentUpon>201711071407237_added member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071408216_member.resx">
+      <DependentUpon>201711071408216_member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071413028_this.resx">
+      <DependentUpon>201711071413028_this.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071436414_removed current exercises.resx">
+      <DependentUpon>201711071436414_removed current exercises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071517271_add yearly points.resx">
+      <DependentUpon>201711071517271_add yearly points.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,25 @@
+﻿@model VirtualWellnessProgram.Models.ViewModels.GroupPointsViewModel
+
+@{
+    ViewBag.Title = "LeaderBoard";
+}
+
+<h2>Leader Board</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m.Group)
+        </th>
+    </tr>
+    @foreach (var item in Model.Group)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPoints)
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -35,7 +35,14 @@ namespace VirtualWellnessProgram.CheckLoginUser
                         CreateExerciseAmount(customer);
                     }
                 }
-                EditCustomerDay(customer);
+                if (DateTime.Today.Day == 1)
+                {
+                    EditCustomerMonthlyPointsandDay(customer);
+                }
+                else
+                {
+                    EditCustomerDay(customer);
+                }
             }
         }
 
@@ -107,6 +114,19 @@ namespace VirtualWellnessProgram.CheckLoginUser
         private void EditCustomerDay(Customer customer)
         {
             customer.Day = DateTime.Today;
+
+            db.Entry(customer).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        private void EditCustomerMonthlyPointsandDay(Customer customer)
+        {
+            customer.ExerciseYearlyPoints += customer.ExerciseMonthlyPoints;
+            customer.ExerciseMonthlyPoints = 0;
+            customer.CalorieYearlyPoints += customer.CalorieMonthlyPoints;
+            customer.CalorieMonthlyPoints = 0;
+            customer.Day = DateTime.Today;
+
             db.Entry(customer).State = EntityState.Modified;
             db.SaveChanges();
         }

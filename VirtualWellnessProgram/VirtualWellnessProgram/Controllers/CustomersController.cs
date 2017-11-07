@@ -81,8 +81,9 @@ namespace VirtualWellnessProgram.Controllers
                 customer.CaloriesPending = false;
                 customer.CalorieYearlyPoints = 0;
                 customer.CalorieMonthlyPoints = 0;
+                customer.ExerciseYearlyPoints = 0;
+                customer.ExerciseMonthlyPoints = 0;
                 customer.CurrentCalorieCount = 0;
-                customer.CurrentModerateDuration = 0;
                 customer.ExercisePending = false;
                 customer.Day = DateTime.Today;
 

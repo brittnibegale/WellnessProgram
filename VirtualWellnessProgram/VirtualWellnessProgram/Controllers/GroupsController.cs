@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 using VirtualWellnessProgram.Models;
 using VirtualWellnessProgram.Models.ViewModels;
 
@@ -52,6 +53,7 @@ namespace VirtualWellnessProgram.Controllers
         {
             if (ModelState.IsValid)
             {
+                group.UpdatedDate = DateTime.Today;
                 db.Groups.Add(group);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -115,6 +117,39 @@ namespace VirtualWellnessProgram.Controllers
             db.Groups.Remove(group);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Points()
+        {
+            var groups = db.Groups.ToList();
+            var humans = db.Customers.ToList();
+            foreach (var group in groups)
+            {
+                foreach (var people in humans)
+                {
+                    double totalResult = 0;
+
+                    if (people.GroupId == group.Id)
+                    {
+                        if (group.UpdatedDate != DateTime.Today)
+                        {
+                            double totalPoints = people.CalorieYearlyPoints + people.ExerciseYearlyPoints + people.ExerciseMonthlyPoints + people.CalorieMonthlyPoints;
+                            totalResult += totalPoints;
+                        }
+                    }
+                    if (totalResult > group.TotalPoints)
+                    {
+                        group.TotalPoints = totalResult;
+                        db.Entry(group).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            var result = db.Groups.OrderByDescending(g => g.TotalPoints).ToList();
+            GroupPointsViewModel groupPoints = new GroupPointsViewModel();
+            groupPoints.Group = result;
+
+            return View(groupPoints);
         }
 
         protected override void Dispose(bool disposing)
