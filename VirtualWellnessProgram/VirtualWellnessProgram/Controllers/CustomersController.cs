@@ -222,6 +222,21 @@ namespace VirtualWellnessProgram.Controllers
             ViewBag.HealthId = new SelectList(db.HealthInfoes, "Id", "UniqueCode", customer.HealthId);
             return View(customer);
         }
+
+        public ActionResult Points()
+        {
+            var currentUsername = User.Identity.Name;
+            var currentUser = db.Users.Where(m => m.UserName == currentUsername).Select(m => m.Id).ToString();
+            var currentCustomer = db.Customers.Where(m => m.ApplicationUserId == currentUser).First();
+
+            CustomerPointsViewModel viewModel = new CustomerPointsViewModel();
+            viewModel.CalorieMonthlyPoints = currentCustomer.CalorieMonthlyPoints;
+            viewModel.CalorieYearlyPoints = currentCustomer.CalorieYearlyPoints;
+            viewModel.ExerciseMonthlyPoints = currentCustomer.ExerciseMonthlyPoints;
+            viewModel.ExerciseYearlyPoints = currentCustomer.ExerciseYearlyPoints;
+
+            return View(viewModel);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

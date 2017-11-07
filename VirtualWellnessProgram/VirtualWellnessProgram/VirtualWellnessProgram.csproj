@@ -297,6 +297,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\CustomerCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\CustomerEditGroupIdViewModel.cs" />
+    <Compile Include="Models\ViewModels\CustomerPointsViewModel.cs" />
     <Compile Include="Models\ViewModels\GroupPointsViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeVerifyDatabaseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -396,6 +397,7 @@
     <Content Include="Views\CalorieAlerts\Edit.cshtml" />
     <Content Include="Views\CalorieAlerts\Index.cshtml" />
     <Content Include="Views\Groups\Points.cshtml" />
+    <Content Include="Views\Customers\Points.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

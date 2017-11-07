@@ -1,0 +1,36 @@
+﻿@model VirtualWellnessProgram.Models.ViewModels.CustomerPointsViewModel
+@{
+    ViewBag.Title = "MyPoints";
+}
+
+<h2>My Points</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m.CalorieMonthlyPoints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.CalorieYearlyPoints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.ExerciseMonthlyPoints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.ExerciseYearlyPoints)
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayFor(m => m.CalorieMonthlyPoints)
+        </th>
+        <th>
+            @Html.DisplayFor(m => m.CalorieYearlyPoints)
+        </th>
+        <th>
+            @Html.DisplayFor(m => m.ExerciseMonthlyPoints)
+        </th>
+        <th>
+            @Html.DisplayFor(m => m.ExerciseYearlyPoints)
+        </th>
+    </tr>
+</table>
