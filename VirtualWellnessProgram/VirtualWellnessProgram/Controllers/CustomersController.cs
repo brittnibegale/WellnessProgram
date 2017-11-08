@@ -84,6 +84,9 @@ namespace VirtualWellnessProgram.Controllers
                 customer.ExerciseYearlyPoints = 0;
                 customer.ExerciseMonthlyPoints = 0;
                 customer.CurrentCalorieCount = 0;
+                customer.ModerateNumberToAdd = 0;
+                customer.VigorousNumberToAdd = 0;
+                customer.CurrentCalorieCount = 0;
                 customer.ExercisePending = false;
                 customer.Day = DateTime.Today;
 
@@ -237,6 +240,38 @@ namespace VirtualWellnessProgram.Controllers
 
             return View(viewModel);
         }
+
+        public ActionResult GetFoodItem()
+        {
+            FoodAPIViewModel search = new FoodAPIViewModel();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetFoodItem(FoodAPIViewModel search)
+        {
+            var searchWord = search.SearchWordInput;
+            var foodList = USDAAPI.SearchFood.UsdaCall(searchWord);
+            search.food = foodList;
+
+            return View(search);
+        }
+
+        public ActionResult GetFoodInfo(string id)
+        {
+            var info = USDAAPI.SearchFood.GetFood(id);
+            var calories = info.Report.Foods[0].Nutrients[0].Value;
+            double calorieResult = Math.Round(Double.Parse(calories));
+            var userName = User.Identity.Name;
+            var currentUser = db.Users.Where(m => m.UserName == userName).Select(m => m.Id).ToString();
+            var currentCustomer = db.Customers.Where(m => m.ApplicationUserId == currentUser).First();
+           
+            UpdateCustomer.UpdateCalories view = new UpdateCustomer.UpdateCalories();
+            var customer = view.EditCalories(calorieResult, currentCustomer);
+
+            return View(customer);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

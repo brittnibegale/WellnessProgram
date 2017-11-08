@@ -1,0 +1,45 @@
+﻿@using Antlr.Runtime
+@model VirtualWellnessProgram.Models.ViewModels.FoodAPIViewModel
+@{
+    ViewBag.Title = "GetFoodItem";
+}
+
+<h2>Select Food Item</h2>
+
+<h5>You can individually input the food that you have eaten today in the form below.</h5>
+
+<h3>Food Search Form</h3>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.SearchWordInput, new {@class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m =>m.SearchWordInput, new {@class = "form-control"})
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Search"/>
+        </div>
+    </div>
+}
+@if (Model.SearchWordInput != null && Model.food != null)
+{
+    <table class="table">
+        <thead>
+        <tr>List of Food</tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.food.List.Item)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@Html.ActionLink("Add", "GetFoodInfo", "Customers", new {id = item.Ndbno})</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+
+

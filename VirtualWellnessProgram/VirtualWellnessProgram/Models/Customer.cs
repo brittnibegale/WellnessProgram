@@ -22,17 +22,15 @@ namespace VirtualWellnessProgram.Models
         public string LastName { get; set; }
 
         public DateTime Day { get; set; }
-        public List<double> VigorousNumberToAdd { get; set; }
+        public double VigorousNumberToAdd { get; set; }
         public bool ExercisePending { get; set; }
-        public List<double> ModerateNumberToAdd { get; set; }
+        public double ModerateNumberToAdd { get; set; }
 
         [Display(Name = "Calorie Goal")]
         public double CalorieGoal { get; set; }
 
         [Display(Name = "Today's Calorie Intake")]
-        public double? CurrentCalorieCount { get; set; }
-
-        public List<double> CaloriesToAdd { get; set; }
+        public double CurrentCalorieCount { get; set; }
 
         [Display(Name = "Personal Monthly Points")]
         public double CalorieMonthlyPoints { get; set; }

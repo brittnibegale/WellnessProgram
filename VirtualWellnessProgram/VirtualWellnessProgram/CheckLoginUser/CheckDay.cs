@@ -48,14 +48,10 @@ namespace VirtualWellnessProgram.CheckLoginUser
 
         private void CreateCalorieAmount(Customer customer)
         {
-            List<double> calories = customer.CaloriesToAdd;
-
+            double calories = customer.CurrentCalorieCount;
             double totalCalories = 0;
 
-            for (int i = 0; i < calories.Count; i++)
-            {
-                totalCalories += calories[i];
-            }
+            totalCalories += calories;
 
             CreateCalorieAlert(totalCalories, customer);
         }
@@ -78,20 +74,10 @@ namespace VirtualWellnessProgram.CheckLoginUser
         {
             double totalModerateAmount = 0;
             double totalVigorusAmount = 0;
-            if (customer.ModerateNumberToAdd.Count > 0)
-            {
-                for (int i = 0; i < customer.ModerateNumberToAdd.Count; i++)
-                {
-                    totalModerateAmount += customer.ModerateNumberToAdd[i];
-                }
-            }
-            if (customer.VigorousNumberToAdd.Count > 0)
-            {
-                for (int i = 0; i < customer.VigorousNumberToAdd.Count; i++)
-                {
-                    totalVigorusAmount += customer.VigorousNumberToAdd[i];
-                }
-            }
+           
+            totalModerateAmount += customer.ModerateNumberToAdd;
+            totalVigorusAmount += customer.VigorousNumberToAdd;
+            
             CreateExerciseAlert(totalVigorusAmount, totalModerateAmount, customer);
         }
 

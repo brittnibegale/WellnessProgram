@@ -1,0 +1,21 @@
+﻿@model VirtualWellnessProgram.Models.Customer
+@{
+    ViewBag.Title = "GetFoodInfo";
+}
+
+<table class="table">
+    <tr>
+        <h4>Todays Current Calorie Count</h4>
+        <td>
+            @Html.DisplayFor(m => m.CurrentCalorieCount)
+        </td>
+    </tr>
+    <tr>
+        <h4>Your Calorie Goal</h4>
+        <td>
+            @Html.DisplayFor(m => m.CalorieGoal)
+        </td>
+    </tr>
+</table>
+
+
