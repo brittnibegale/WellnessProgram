@@ -10,9 +10,14 @@ namespace VirtualWellnessProgram.Models
     public class Audit
     {
         public Guid AuditId { get; set; }
+
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
+
+        [Display(Name = "Area Accessed")]
         public string AreaAccessed { get; set; }
 
+        [Display(Name = "Date Modified")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public string Timestamp { get; set; }

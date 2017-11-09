@@ -1,0 +1,24 @@
+﻿@model VirtualWellnessProgram.Models.ViewModels.GroupMyGroupsPointsViewModel
+@{
+    ViewBag.Title = "MyGroupsPoints";
+}
+
+<h2>My Groups Points</h2>
+
+<hr />
+<table class="table">
+    <thead>
+    @Html.DisplayNameFor(m =>m.GroupCalorie)
+    </thead>
+    <tbody>
+    @Html.DisplayFor(m =>m.GroupCalorie)
+    </tbody>
+    <br />
+    <thead>
+    @Html.DisplayNameFor(m =>m.GroupExercise)
+    </thead>
+    <tbody>
+    @Html.DisplayFor(m => m.GroupExercise)
+    </tbody>
+     
+</table>

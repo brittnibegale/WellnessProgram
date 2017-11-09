@@ -28,12 +28,16 @@ namespace VirtualWellnessProgram.CheckLoginUser
                 {
                     CreateCalorieAmount(customer);
                 }
-                if (customer.Day.Equals(DayOfWeek.Friday.ToString()))
+
+                var datetime = DateTime.Parse(customer.Day);
+                var datetimeday = datetime.DayOfWeek.ToString();
+
+                if (datetimeday.Equals(DayOfWeek.Friday.ToString()))
                 {
                     if (customer.ExercisePending == true)
                     {
                         CreateExerciseAmount(customer);
-                    }//get right language for this
+                    }
                 }
                 if (DateTime.Today.Day == 1)
                 {
@@ -55,7 +59,7 @@ namespace VirtualWellnessProgram.CheckLoginUser
 
             CreateCalorieAlert(totalCalories, customer);
         }
-
+        
         private void CreateCalorieAlert(double calories, Customer customer)
         {
             CalorieAlert calorieAlert = new CalorieAlert();

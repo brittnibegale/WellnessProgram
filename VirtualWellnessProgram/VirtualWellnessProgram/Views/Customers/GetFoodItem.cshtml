@@ -23,22 +23,33 @@
         </div>
     </div>
 }
-@if (Model.SearchWordInput != null && Model.food != null)
+@try
 {
-    <table class="table">
-        <thead>
-        <tr>List of Food</tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.food.List.Item)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>@Html.ActionLink("Add", "GetFoodInfo", "Customers", new {id = item.Ndbno})</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+    if (Model.SearchWordInput != null && Model.food != null)
+    {
+        <table class="table">
+            <thead>
+            <tr>List of Food</tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.food.List.Item)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@Html.ActionLink("Add", "GetFoodInfo", "Customers", new {id = item.Ndbno})</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}
+catch
+{
+
+}
+finally
+{
+    
 }
 
 

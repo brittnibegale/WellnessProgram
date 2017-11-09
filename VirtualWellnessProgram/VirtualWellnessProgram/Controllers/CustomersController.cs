@@ -278,6 +278,42 @@ namespace VirtualWellnessProgram.Controllers
             return View(customer);
         }
 
+        public ActionResult AddExercise()
+        {
+            CustomerAddExerciseViewModel viewModel = new CustomerAddExerciseViewModel();
+            viewModel.MuscleTraining = false;
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddExercise(CustomerAddExerciseViewModel viewModel)
+        {
+            var currentUserName = User.Identity.Name;
+            var currentUserId = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).ToString();
+            var currentCustomerIdString = db.Customers.Where(m => m.ApplicationUserId == currentUserId).Select(m => m.Id).ToString();
+            var currentCustomerId = Int32.Parse(currentCustomerIdString);
+            var currentCustomer = db.Customers.Where(m => m.Id == currentCustomerId).First();
+            var moderate = viewModel.ModerateTraining;
+            var vigorous = viewModel.VigorousTraining;
+
+            if (moderate > 0)
+            {
+                currentCustomer.ModerateNumberToAdd += moderate;
+                currentCustomer.ExercisePending = true;
+            }
+
+            if (vigorous > 0)
+            {
+                currentCustomer.VigorousNumberToAdd += vigorous;
+                currentCustomer.ExercisePending = true;
+            }
+
+            db.Entry(currentCustomer).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return View(viewModel);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

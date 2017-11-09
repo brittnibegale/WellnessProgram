@@ -59,11 +59,12 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Add Food", "About", "Home")</li>
-                            <li>@Html.ActionLink("Add Exercise", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Add Food", "GetFoodItem", "Customers")</li>
+                            <li>@Html.ActionLink("Add Exercise", "AddExercise", "Customers")</li>
                             <li>@Html.ActionLink("Request Group Change", "Create", "Alerts")</li>
                             <li>@Html.ActionLink("Leader Board", "Points", "Groups")</li>
                             <li>@Html.ActionLink("My Points", "Points","Customers")</li>
+                            <li>@Html.ActionLink("My Groups Points", "MyGroupsPoints", "Groups")</li>
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -85,8 +86,12 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Add Food", "GetFoodItem", "Customers")</li>
+                            <li>@Html.ActionLink("Add Exercise", "AddExercise", "Customers")</li>
+                            <li>@Html.ActionLink("Request Group Change", "Create", "Alerts")</li>
+                            <li>@Html.ActionLink("Leader Board", "Points", "Groups")</li>
+                            <li>@Html.ActionLink("My Points", "Points","Customers")</li>
+                            <li>@Html.ActionLink("My Groups Points", "MyGroupsPoints", "Groups")</li>
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -119,10 +124,10 @@
     }
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
+        @*<hr />*@
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - Virtual Wellness Program</p>
-        </footer>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
