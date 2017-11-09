@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using VirtualWellnessProgram.Audit;
 using VirtualWellnessProgram.MakeNewUserGoals;
 using VirtualWellnessProgram.Models;
 using VirtualWellnessProgram.Models.ViewModels;
@@ -56,6 +57,7 @@ namespace VirtualWellnessProgram.Controllers
         // POST: Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CustomerCreateViewModel viewModel1)
@@ -88,7 +90,7 @@ namespace VirtualWellnessProgram.Controllers
                 customer.VigorousNumberToAdd = 0;
                 customer.CurrentCalorieCount = 0;
                 customer.ExercisePending = false;
-                customer.Day = DateTime.Today;
+                customer.Day = DateTime.Today.ToString("MM/dd/yyyy");
 
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -126,6 +128,7 @@ namespace VirtualWellnessProgram.Controllers
         // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Day,CurrentVigorousDuration,VigorousNumberToAdd,ExercisePending,CurrentModerateDuration,ModerateNumberToAdd,CalorieGoal,CurrentCalorieCount,CaloriesToAdd,CalorieMonthlyPoints,CalorieYearlyPoints,CaloriesPending,ModerateDuration,VigorousDuration,Captain,ApplicationUserId,HealthId,GroupId")] Customer customer)
@@ -158,6 +161,7 @@ namespace VirtualWellnessProgram.Controllers
         }
 
         // POST: Customers/Delete/5
+        [Audit]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -183,6 +187,7 @@ namespace VirtualWellnessProgram.Controllers
             return View(customer);
         }
 
+        [Audit]
         [HttpPost]
         public ActionResult EditGroupId(Customer customer)
         {
@@ -211,6 +216,7 @@ namespace VirtualWellnessProgram.Controllers
            
         }
 
+        [Audit]
         [HttpPost]
         public ActionResult EditCaptainStatus(Customer customer)
         {

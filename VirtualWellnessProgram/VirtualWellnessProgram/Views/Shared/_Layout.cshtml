@@ -24,13 +24,13 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Edit Groups", "ChangeGroupId", "Customers")</li>
+                        @*<li>@Html.ActionLink("Edit Groups", "ChangeGroupId", "Customers")</li>*@
                         <li>@Html.ActionLink("Create Group", "Create", "Groups")</li>
                         <li>@Html.ActionLink("Manage Captain Roles", "ChangeCaptainStatus", "Customers")</li>
-                        <li>@Html.ActionLink("Alerts", "Index", "Home")</li>
                         <li>@Html.ActionLink("Add CSV File", "Upload", "Home")</li>
                         <li>@Html.ActionLink("Requests", "Index", "Alerts")</li>
                         <li>@Html.ActionLink("Delete User", "Index", "Customers")</li>
+                        <li>@Html.ActionLink("View Database Changes", "ViewAuditRecords", "Home")</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>

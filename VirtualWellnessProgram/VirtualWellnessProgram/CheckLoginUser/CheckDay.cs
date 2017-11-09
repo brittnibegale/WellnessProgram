@@ -12,9 +12,9 @@ namespace VirtualWellnessProgram.CheckLoginUser
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public void FindCustomer(string email)
+        public void FindCustomer(string UserName)
         {
-            var currentUserId= db.Users.Where(m => m.Email == email).Select(m => m.Id).ToString();
+            var currentUserId= db.Users.Where(m => m.UserName == UserName).Select(m => m.Id).ToString();
             var currentCustomer = db.Customers.Where(m => m.ApplicationUserId == currentUserId).First();
 
             CheckCurrentDay(currentCustomer);
@@ -22,18 +22,18 @@ namespace VirtualWellnessProgram.CheckLoginUser
 
         private void CheckCurrentDay(Customer customer)
         {
-            if (customer.Day != DateTime.Today)
+            if (customer.Day != DateTime.Today.ToString("MM/dd/yyyy"))
             {
                 if (customer.CaloriesPending == true)
                 {
                     CreateCalorieAmount(customer);
                 }
-                if (customer.Day.DayOfWeek.Equals(DayOfWeek.Friday))
+                if (customer.Day.Equals(DayOfWeek.Friday.ToString()))
                 {
                     if (customer.ExercisePending == true)
                     {
                         CreateExerciseAmount(customer);
-                    }
+                    }//get right language for this
                 }
                 if (DateTime.Today.Day == 1)
                 {
@@ -99,7 +99,7 @@ namespace VirtualWellnessProgram.CheckLoginUser
 
         private void EditCustomerDay(Customer customer)
         {
-            customer.Day = DateTime.Today;
+            customer.Day = DateTime.Today.ToString("MM/dd/yyyy");
 
             db.Entry(customer).State = EntityState.Modified;
             db.SaveChanges();
@@ -111,7 +111,7 @@ namespace VirtualWellnessProgram.CheckLoginUser
             customer.ExerciseMonthlyPoints = 0;
             customer.CalorieYearlyPoints += customer.CalorieMonthlyPoints;
             customer.CalorieMonthlyPoints = 0;
-            customer.Day = DateTime.Today;
+            customer.Day = DateTime.Today.ToString("MM/dd/yyyy");
 
             db.Entry(customer).State = EntityState.Modified;
             db.SaveChanges();

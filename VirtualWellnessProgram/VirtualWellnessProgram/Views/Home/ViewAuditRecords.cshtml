@@ -1,0 +1,37 @@
+﻿@model IEnumerable<VirtualWellnessProgram.Models.Audit>
+@{
+    ViewBag.Title = "ViewAuditRecords";
+}
+
+<h2>Audit Records</h2>
+
+<table class="table">
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.UserName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.AreaAccessed)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Timestamp)
+    </th>
+    <th></th>
+</tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaAccessed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timestamp)
+        </td>
+    </tr>
+}
+</table>
+

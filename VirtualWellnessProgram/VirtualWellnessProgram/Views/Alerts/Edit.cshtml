@@ -1,4 +1,4 @@
-﻿@model VirtualWellnessProgram.Models.Alert
+﻿@model VirtualWellnessProgram.Models.ViewModels.AlertEditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -11,40 +11,40 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Alert</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        <h3>Edit this Alert</h3>
+    <p>Check the Read box and type the group name they want to be in. If the alert is not something you are capable of doing type "none".</p>
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.HiddenFor(model => model.Alert.Id)
+        @Html.HiddenFor(model => model.Alert.CustomerId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Alerts, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Alert.Alerts, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Alerts, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Alerts, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Alert.Alerts, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Alert.Alerts, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Read, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Alert.Read, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Read)
-                    @Html.ValidationMessageFor(model => model.Read, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Alert.Read)
+                    @Html.ValidationMessageFor(model => model.Alert.Read, "", new {@class = "text-danger"})
                 </div>
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
-            </div>
+            @Html.LabelFor(m => m.Response, new {@class = "control-label col-md-2"})
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Response, new {htmlAttributes = new {@class = "form-control"}})
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default"/>
             </div>
         </div>
     </div>

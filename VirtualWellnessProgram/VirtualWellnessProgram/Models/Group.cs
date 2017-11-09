@@ -24,7 +24,10 @@ namespace VirtualWellnessProgram.Models
         [Display(Name = "Total Points")]
         public double TotalPoints { get; set; }
 
-        public DateTime UpdatedDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public string UpdatedDate { get; set; }
 
     }
 }

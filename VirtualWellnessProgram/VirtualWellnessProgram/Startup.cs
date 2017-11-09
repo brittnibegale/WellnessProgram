@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using TrackerEnabledDbContext.Common.Configuration;
 using VirtualWellnessProgram.Models;
 
 [assembly: OwinStartupAttribute(typeof(VirtualWellnessProgram.Startup))]
@@ -30,15 +32,19 @@ namespace VirtualWellnessProgram
                 var user = new ApplicationUser();
                 user.UserName = "Brittni";
                 user.Email = "brittnibegale@gmail.com";
+                user.Code = "1234";
 
                 string userPWD = "Brittni#1";
+               
+                    var chkUser = UserManager.Create(user, userPWD);
+                    if (chkUser.Succeeded)
+                    {
+                        var result1 = UserManager.AddToRole(user.Id, "Admin");
+                    }
+              
 
-                var chkUser = UserManager.Create(user, userPWD);
 
-                if (chkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
-                }
+               
             }
             if (!roleManager.RoleExists("Registered User"))
             {

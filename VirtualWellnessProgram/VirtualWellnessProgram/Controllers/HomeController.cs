@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LumenWorks.Framework.IO.Csv;
+using VirtualWellnessProgram.Audit;
 using VirtualWellnessProgram.Models;
 using VirtualWellnessProgram.Models.ViewModels;
 
@@ -37,6 +38,7 @@ namespace VirtualWellnessProgram.Controllers
             return View();
         }
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Upload(HttpPostedFileBase upload)
@@ -82,6 +84,7 @@ namespace VirtualWellnessProgram.Controllers
             return View(viewModel);
         }
 
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult VarifyDatatable(HomeVerifyDatabaseViewModel viewModel)
@@ -100,30 +103,41 @@ namespace VirtualWellnessProgram.Controllers
                         Result.Add(encryptedWords);
                     }
                 }
+                for (int i = 0; i < Result.Count; i++)
+                {
+                    HealthInfo healthInfo = new HealthInfo();
+                    healthInfo.UniqueCode = Encryption.Encrytion.Decrypt(Result[i]);
+                    i++;
+                    healthInfo.Age = Result[i];
+                    i++;
+                    healthInfo.Gender = Result[i];
+                    i++;
+                    healthInfo.Height = Result[i];
+                    i++;
+                    healthInfo.Weight = Result[i];
+                    i++;
+                    healthInfo.Smoker = Result[i];
+                    i++;
+                    healthInfo.BodyFatAmt = Result[i];
+                    i++;
+                    healthInfo.Hdl = Result[i];
+                    i++;
+                    healthInfo.Ldl = Result[i];
+                    i++;
+                    healthInfo.CholesterolTotal = Result[i];
+                    i++;
+                    healthInfo.Triglycerides = Result[i];
 
-                HealthInfo healthInfo = new HealthInfo();
-                healthInfo.UniqueCode = Encryption.Encrytion.Decrypt(Result[0]);
-                healthInfo.Age = Result[1];
-                healthInfo.Gender = Result[2];
-                healthInfo.Height = Result[3];
-                healthInfo.Weight = Result[4];
-                healthInfo.Smoker = Result[5];
-                healthInfo.BodyFatAmt = Result[6];
-                healthInfo.Hdl = Result[7];
-                healthInfo.Ldl = Result[8];
-                healthInfo.CholesterolTotal = Result[9];
-                healthInfo.Triglycerides = Result[10];
-
-                db.HealthInfoes.Add(healthInfo);
-                db.SaveChanges();
-
-                RedirectToAction("UploadComplete");
-
+                    db.HealthInfoes.Add(healthInfo);
+                    db.SaveChanges();
+                }
+    
+                return RedirectToAction("UploadComplete");
 
             }
             else if (viewModel.Verified == false)
             {
-                RedirectToAction("Upload");
+                return RedirectToAction("Upload");
             }
             return View();
         }
@@ -131,6 +145,12 @@ namespace VirtualWellnessProgram.Controllers
         public ActionResult UploadComplete()
         {
             return View();
+        }
+
+        public ActionResult ViewAuditRecords()
+        {
+            var audits = new AuditingContext().AuditRecords;
+            return View(audits);
         }
     }
 }

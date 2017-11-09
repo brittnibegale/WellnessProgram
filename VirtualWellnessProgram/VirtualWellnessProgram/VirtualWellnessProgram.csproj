@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework.MappingAPI, Version=6.1.0.9, Culture=neutral, PublicKeyToken=7ee2e825d201459e, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MappingAPI.6.1.0.9\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LumenWorks.Framework.IO, Version=3.9.1.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
       <HintPath>..\packages\LumenWorksCsvReader.3.9.1\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
       <Private>True</Private>
@@ -139,6 +143,18 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="TrackerEnabledDbContext, Version=3.6.1.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
+      <HintPath>..\packages\TrackerEnabledDbContext.3.6.1\lib\net45\TrackerEnabledDbContext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TrackerEnabledDbContext.Common, Version=3.6.1.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
+      <HintPath>..\packages\TrackerEnabledDbContext.Common.3.6.1\lib\net45\TrackerEnabledDbContext.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TrackerEnabledDbContext.Identity, Version=3.6.1.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
+      <HintPath>..\packages\TrackerEnabledDbContext.Identity.3.6.1\lib\net45\TrackerEnabledDbContext.Identity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -204,6 +220,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Audit\AuditAttribute.cs" />
     <Compile Include="CheckLoginUser\CheckDay.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlertsController.cs" />
@@ -290,9 +307,42 @@
     <Compile Include="Migrations\201711071517271_add yearly points.Designer.cs">
       <DependentUpon>201711071517271_add yearly points.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711082112101_changed datetime thing.cs" />
+    <Compile Include="Migrations\201711082112101_changed datetime thing.Designer.cs">
+      <DependentUpon>201711082112101_changed datetime thing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091601510_audit.cs" />
+    <Compile Include="Migrations\201711091601510_audit.Designer.cs">
+      <DependentUpon>201711091601510_audit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091619162_please work.cs" />
+    <Compile Include="Migrations\201711091619162_please work.Designer.cs">
+      <DependentUpon>201711091619162_please work.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091640335_work.cs" />
+    <Compile Include="Migrations\201711091640335_work.Designer.cs">
+      <DependentUpon>201711091640335_work.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091652077_adding the correct audit.cs" />
+    <Compile Include="Migrations\201711091652077_adding the correct audit.Designer.cs">
+      <DependentUpon>201711091652077_adding the correct audit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091905069_fixed stuff.cs" />
+    <Compile Include="Migrations\201711091905069_fixed stuff.Designer.cs">
+      <DependentUpon>201711091905069_fixed stuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091921179_sup.cs" />
+    <Compile Include="Migrations\201711091921179_sup.Designer.cs">
+      <DependentUpon>201711091921179_sup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091928552_trying to get audit records.cs" />
+    <Compile Include="Migrations\201711091928552_trying to get audit records.Designer.cs">
+      <DependentUpon>201711091928552_trying to get audit records.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
+    <Compile Include="Models\Audit.cs" />
     <Compile Include="Models\CalorieAlert.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\ExerciseAlert.cs" />
@@ -302,6 +352,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SearchFoodAPI.cs" />
+    <Compile Include="Models\ViewModels\AlertEditViewModel.cs" />
     <Compile Include="Models\ViewModels\CustomerCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\CustomerEditGroupIdViewModel.cs" />
     <Compile Include="Models\ViewModels\CustomerPointsViewModel.cs" />
@@ -410,6 +461,7 @@
     <Content Include="Views\Customers\Points.cshtml" />
     <Content Include="Views\Customers\GetFoodItem.cshtml" />
     <Content Include="Views\Customers\GetFoodInfo.cshtml" />
+    <Content Include="Views\Home\ViewAuditRecords.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -476,6 +528,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711071517271_add yearly points.resx">
       <DependentUpon>201711071517271_add yearly points.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711082112101_changed datetime thing.resx">
+      <DependentUpon>201711082112101_changed datetime thing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091601510_audit.resx">
+      <DependentUpon>201711091601510_audit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091619162_please work.resx">
+      <DependentUpon>201711091619162_please work.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091640335_work.resx">
+      <DependentUpon>201711091640335_work.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091652077_adding the correct audit.resx">
+      <DependentUpon>201711091652077_adding the correct audit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091905069_fixed stuff.resx">
+      <DependentUpon>201711091905069_fixed stuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091921179_sup.resx">
+      <DependentUpon>201711091921179_sup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091928552_trying to get audit records.resx">
+      <DependentUpon>201711091928552_trying to get audit records.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

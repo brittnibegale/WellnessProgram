@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using VirtualWellnessProgram.Audit;
 using VirtualWellnessProgram.Models;
+using VirtualWellnessProgram.Models.ViewModels;
 
 namespace VirtualWellnessProgram.Controllers
 {
@@ -46,6 +48,7 @@ namespace VirtualWellnessProgram.Controllers
         // POST: Alerts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Alerts,Read,CustomerId")] Alert alert)
@@ -79,25 +82,46 @@ namespace VirtualWellnessProgram.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", alert.CustomerId);
-            return View(alert);
+            AlertEditViewModel viewModel = new AlertEditViewModel();
+            viewModel.Alert = alert;
+            
+            return View(viewModel);
         }
 
         // POST: Alerts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Alerts,Read,CustomerId")] Alert alert)
+        public ActionResult Edit(AlertEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(alert).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var response = viewModel.Response.Trim().ToLower();
+                if (response == "none")
+                {
+                    db.Entry(viewModel.Alert).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var groupId = db.Groups.Where(m => m.GroupName == response).Select(n => n.Id).First();
+                    var customer = db.Customers.Where(m => m.Id == viewModel.Alert.CustomerId).First();
+                    customer.GroupId = groupId;
+
+                    db.Entry(customer).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    db.Entry(viewModel.Alert).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", alert.CustomerId);
-            return View(alert);
+            return View(viewModel);
         }
 
         // GET: Alerts/Delete/5
@@ -116,6 +140,7 @@ namespace VirtualWellnessProgram.Controllers
         }
 
         // POST: Alerts/Delete/5
+        [Audit]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

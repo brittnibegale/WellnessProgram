@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using VirtualWellnessProgram.Audit;
 using VirtualWellnessProgram.Models;
 
 namespace VirtualWellnessProgram.Controllers
@@ -44,6 +45,7 @@ namespace VirtualWellnessProgram.Controllers
         // POST: HealthInfoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UniqueCode,Age,Gender,Height,Weight,Smoker,BodyFatAmt,Hdl,Ldl,CholesterolTotal,Triglycerides")] HealthInfo healthInfo)
@@ -76,6 +78,7 @@ namespace VirtualWellnessProgram.Controllers
         // POST: HealthInfoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,UniqueCode,Age,Gender,Height,Weight,Smoker,BodyFatAmt,Hdl,Ldl,CholesterolTotal,Triglycerides")] HealthInfo healthInfo)
@@ -105,6 +108,7 @@ namespace VirtualWellnessProgram.Controllers
         }
 
         // POST: HealthInfoes/Delete/5
+        [Audit]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

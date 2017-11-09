@@ -21,7 +21,11 @@ namespace VirtualWellnessProgram.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        public DateTime Day { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public string Day { get; set; }
+
         public double VigorousNumberToAdd { get; set; }
         public bool ExercisePending { get; set; }
         public double ModerateNumberToAdd { get; set; }

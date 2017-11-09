@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
+using VirtualWellnessProgram.Audit;
 using VirtualWellnessProgram.Models;
 using VirtualWellnessProgram.Models.ViewModels;
 
@@ -47,13 +48,15 @@ namespace VirtualWellnessProgram.Controllers
         // POST: Groups/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Group group)
         {
             if (ModelState.IsValid)
             {
-                group.UpdatedDate = DateTime.Today;
+                group.UpdatedDate = DateTime.Today.ToString("MM/dd/yyyy");
+                group.GroupName.ToLower();
                 db.Groups.Add(group);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -80,6 +83,7 @@ namespace VirtualWellnessProgram.Controllers
         // POST: Groups/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,GroupName,GroupCaloriePoints,GroupExercisePoints,TotalPoints")] Group group)
@@ -109,6 +113,7 @@ namespace VirtualWellnessProgram.Controllers
         }
 
         // POST: Groups/Delete/5
+        [Audit]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -118,7 +123,7 @@ namespace VirtualWellnessProgram.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Audit]
         public ActionResult Points()
         {
             var groups = db.Groups.ToList();
@@ -131,7 +136,7 @@ namespace VirtualWellnessProgram.Controllers
 
                     if (people.GroupId == group.Id)
                     {
-                        if (group.UpdatedDate != DateTime.Today)
+                        if (group.UpdatedDate != DateTime.Today.ToString("MM/dd/yyyy"))
                         {
                             double totalPoints = people.CalorieYearlyPoints + people.ExerciseYearlyPoints + people.ExerciseMonthlyPoints + people.CalorieMonthlyPoints;
                             totalResult += totalPoints;
