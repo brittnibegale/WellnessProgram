@@ -6,133 +6,128 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using VirtualWellnessProgram.Audit;
 using VirtualWellnessProgram.Models;
 
 namespace VirtualWellnessProgram.Controllers
 {
-    public class CalorieAlertsController : Controller
+    public class ExerciseAlertsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: CalorieAlerts
+        // GET: ExerciseAlerts
         public ActionResult Index()
         {
             var currentUserName = User.Identity.Name;
             var currentUser = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).ToString();
-            var captainGroupString = db.Customers.Where(m => m.ApplicationUserId == currentUser).Select( m => m.GroupId).ToString();
+            var captainGroupString = db.Customers.Where(m => m.ApplicationUserId == currentUser).Select(m => m.GroupId).ToString();
             var captainGroupId = Int32.Parse(captainGroupString);
-            var calorieAlerts = db.CalorieAlerts.Where(m => m.Group == captainGroupId && m.Read == false).Include(c => c.customer);
+            var exerciseAlerts = db.ExerciseAlerts.Where(m => m.Group == captainGroupId && m.Read == false).Include(e => e.Customer);
 
-            return View(calorieAlerts.ToList());
+            return View(exerciseAlerts.ToList());
         }
 
-        // GET: CalorieAlerts/Details/5
+        // GET: ExerciseAlerts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CalorieAlert calorieAlert = db.CalorieAlerts.Find(id);
-            if (calorieAlert == null)
+            ExerciseAlert exerciseAlert = db.ExerciseAlerts.Find(id);
+            if (exerciseAlert == null)
             {
                 return HttpNotFound();
             }
-            return View(calorieAlert);
+            return View(exerciseAlert);
         }
 
-        // GET: CalorieAlerts/Create
+        // GET: ExerciseAlerts/Create
         public ActionResult Create()
         {
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName");
             return View();
         }
 
-        // POST: CalorieAlerts/Create
+        // POST: ExerciseAlerts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CalorieGoal,CaloriesConsumed,CustomerFirstName,CustomerLastName,Read,CustomerId")] CalorieAlert calorieAlert)
+        public ActionResult Create([Bind(Include = "Id,VigorousGoal,ModerateGoal,currentVigorous,currentModerate,CustomerFirstName,CustomerLastName,Read,CustomerId")] ExerciseAlert exerciseAlert)
         {
             if (ModelState.IsValid)
             {
-                db.CalorieAlerts.Add(calorieAlert);
+                db.ExerciseAlerts.Add(exerciseAlert);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", calorieAlert.CustomerId);
-            return View(calorieAlert);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", exerciseAlert.CustomerId);
+            return View(exerciseAlert);
         }
 
-        // GET: CalorieAlerts/Edit/5
+        // GET: ExerciseAlerts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CalorieAlert calorieAlert = db.CalorieAlerts.Find(id);
-            if (calorieAlert == null)
+            ExerciseAlert exerciseAlert = db.ExerciseAlerts.Find(id);
+            if (exerciseAlert == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", calorieAlert.CustomerId);
-            return View(calorieAlert);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", exerciseAlert.CustomerId);
+            return View(exerciseAlert);
         }
 
-        // POST: CalorieAlerts/Edit/5
+        // POST: ExerciseAlerts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CalorieGoal,CaloriesConsumed,CustomerFirstName,CustomerLastName,Read,CustomerId")] CalorieAlert calorieAlert)
+        public ActionResult Edit([Bind(Include = "Id,VigorousGoal,ModerateGoal,currentVigorous,currentModerate,CustomerFirstName,CustomerLastName,Read,CustomerId")] ExerciseAlert exerciseAlert)
         {
             if (ModelState.IsValid)
             {
-                if (calorieAlert.Read == true)
+                if (exerciseAlert.Read == true)
                 {
-                    var customer = calorieAlert.customer;
-                    customer.CalorieMonthlyPoints += 1;
+                    var customer = exerciseAlert.Customer;
+                    customer.ExerciseMonthlyPoints += 1;
                     db.Entry(customer).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-
-                db.Entry(calorieAlert).State = EntityState.Modified;
+                db.Entry(exerciseAlert).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", calorieAlert.CustomerId);
-            return View(calorieAlert);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", exerciseAlert.CustomerId);
+            return View(exerciseAlert);
         }
 
-        // GET: CalorieAlerts/Delete/5
+        // GET: ExerciseAlerts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CalorieAlert calorieAlert = db.CalorieAlerts.Find(id);
-            if (calorieAlert == null)
+            ExerciseAlert exerciseAlert = db.ExerciseAlerts.Find(id);
+            if (exerciseAlert == null)
             {
                 return HttpNotFound();
             }
-            return View(calorieAlert);
+            return View(exerciseAlert);
         }
 
-        // POST: CalorieAlerts/Delete/5
-        [Audit]
+        // POST: ExerciseAlerts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CalorieAlert calorieAlert = db.CalorieAlerts.Find(id);
-            db.CalorieAlerts.Remove(calorieAlert);
+            ExerciseAlert exerciseAlert = db.ExerciseAlerts.Find(id);
+            db.ExerciseAlerts.Remove(exerciseAlert);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -143,26 +138,25 @@ namespace VirtualWellnessProgram.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CalorieAlert calorieAlert = db.CalorieAlerts.Find(id);
-            if (calorieAlert == null)
+            ExerciseAlert exerciseAlert = db.ExerciseAlerts.Find(id);
+            if (exerciseAlert == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", calorieAlert.CustomerId);
-            return View(calorieAlert);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", exerciseAlert.CustomerId);
+            return View(exerciseAlert);
         }
 
         [HttpPost]
-        public ActionResult DenyEdit(CalorieAlert calorieAlert)
+        public ActionResult DenyEdit(ExerciseAlert exerciseAlert)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(calorieAlert).State = EntityState.Modified;
+                db.Entry(exerciseAlert).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", calorieAlert.CustomerId);
-            return View(calorieAlert);
+            return View(exerciseAlert);
         }
         protected override void Dispose(bool disposing)
         {

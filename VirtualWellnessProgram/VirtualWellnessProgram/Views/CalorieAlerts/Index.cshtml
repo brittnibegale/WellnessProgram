@@ -4,16 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Confirm or Deny These Alerts </h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.customer.FirstName)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.CalorieGoal)
         </th>
@@ -35,9 +30,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.customer.FirstName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.CalorieGoal)
         </td>
         <td>
@@ -53,9 +45,8 @@
             @Html.DisplayFor(modelItem => item.Read)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Confirm", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Deny","DenyEdit", new {id = item.Id} )
         </td>
     </tr>
 }

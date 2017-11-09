@@ -286,6 +286,7 @@ namespace VirtualWellnessProgram.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddExercise(CustomerAddExerciseViewModel viewModel)
         {
             var currentUserName = User.Identity.Name;

@@ -1,0 +1,36 @@
+﻿@model VirtualWellnessProgram.Models.ExerciseAlert
+@{
+    ViewBag.Title = "DenyEdit";
+}
+
+<h2>Deny Alert</h2>
+<h4>Check box and hit submit to deny the alert</h4>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(model => model.VigorousGoal)
+@Html.HiddenFor(model => model.currentVigorous)
+@Html.HiddenFor(model => model.ModerateGoal)
+@Html.HiddenFor(model => model.currentModerate)
+@Html.HiddenFor(model => model.CustomerFirstName)
+@Html.HiddenFor(model => model.CustomerLastName)
+@Html.HiddenFor(model => model.CustomerId)
+@Html.HiddenFor(model => model.Group)
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Read, htmlAttributes: new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Read)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default"/>
+        </div>
+    </div>
+
+}

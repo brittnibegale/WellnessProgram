@@ -68,6 +68,7 @@ namespace VirtualWellnessProgram.CheckLoginUser
             calorieAlert.CustomerLastName = customer.LastName;
             calorieAlert.CustomerId = customer.Id;
             calorieAlert.CalorieGoal = customer.CalorieGoal;
+            calorieAlert.Group = customer.GroupId;
             calorieAlert.Read = false;
 
             db.CalorieAlerts.Add(calorieAlert);
@@ -95,6 +96,7 @@ namespace VirtualWellnessProgram.CheckLoginUser
             exerciseAlert.VigorousGoal = customer.VigorousDuration;
             exerciseAlert.currentModerate = moderate;
             exerciseAlert.currentVigorous = vigorous;
+            exerciseAlert.Group = customer.GroupId;
             exerciseAlert.Read = false;
 
             db.ExerciseAlerts.Add(exerciseAlert);

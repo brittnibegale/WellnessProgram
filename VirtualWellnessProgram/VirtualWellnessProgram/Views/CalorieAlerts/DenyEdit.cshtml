@@ -1,0 +1,31 @@
+﻿@model VirtualWellnessProgram.Models.CalorieAlert
+@{
+    ViewBag.Title = "DenyEdit";
+}
+
+<h2>Deny Alert</h2>
+<h4>Check box and hit submit to deny the alert</h4>
+@Html.HiddenFor(m => m.Group)
+@Html.HiddenFor(m =>m.CalorieGoal)
+@Html.HiddenFor(m => m.CaloriesConsumed)
+@Html.HiddenFor(m => m.CustomerId)
+@Html.HiddenFor(m => m.CustomerFirstName)
+@Html.HiddenFor( m=> m.Id)
+@Html.HiddenFor(m => m.CustomerLastName)
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.Label("Deny", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-12">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Read, new { @class = "col-md-2" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}

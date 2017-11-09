@@ -20,6 +20,7 @@ namespace VirtualWellnessProgram.Models
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
         public bool Read { get; set; }
+        public int Group { get; set; }
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }

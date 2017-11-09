@@ -226,6 +226,7 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CalorieAlertsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\ExerciseAlertsController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HealthInfoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -338,6 +339,14 @@
     <Compile Include="Migrations\201711091928552_trying to get audit records.cs" />
     <Compile Include="Migrations\201711091928552_trying to get audit records.Designer.cs">
       <DependentUpon>201711091928552_trying to get audit records.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711092230432_added group id.cs" />
+    <Compile Include="Migrations\201711092230432_added group id.Designer.cs">
+      <DependentUpon>201711092230432_added group id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711092255559_there.cs" />
+    <Compile Include="Migrations\201711092255559_there.Designer.cs">
+      <DependentUpon>201711092255559_there.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -466,6 +475,13 @@
     <Content Include="Views\Home\ViewAuditRecords.cshtml" />
     <Content Include="Views\Groups\MyGroupsPoints.cshtml" />
     <Content Include="Views\Customers\AddExercise.cshtml" />
+    <Content Include="Views\ExerciseAlerts\Create.cshtml" />
+    <Content Include="Views\ExerciseAlerts\Delete.cshtml" />
+    <Content Include="Views\ExerciseAlerts\Details.cshtml" />
+    <Content Include="Views\ExerciseAlerts\Edit.cshtml" />
+    <Content Include="Views\ExerciseAlerts\Index.cshtml" />
+    <Content Include="Views\CalorieAlerts\DenyEdit.cshtml" />
+    <Content Include="Views\ExerciseAlerts\DenyEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -556,6 +572,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711091928552_trying to get audit records.resx">
       <DependentUpon>201711091928552_trying to get audit records.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711092230432_added group id.resx">
+      <DependentUpon>201711092230432_added group id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711092255559_there.resx">
+      <DependentUpon>201711092255559_there.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

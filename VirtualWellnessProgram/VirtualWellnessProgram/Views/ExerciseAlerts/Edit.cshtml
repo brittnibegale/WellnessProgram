@@ -1,10 +1,10 @@
-﻿@model VirtualWellnessProgram.Models.CalorieAlert
+﻿@model VirtualWellnessProgram.Models.ExerciseAlert
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Approve Calorie Alert</h2>
+<h2>Approve Exercise Alert</h2>
 
 @using (Html.BeginForm())
 {
@@ -14,16 +14,18 @@
         <h4>Check the box and hit submit</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(m => m.Group)
-        @Html.HiddenFor(m =>m.CalorieGoal)
-        @Html.HiddenFor(m => m.CaloriesConsumed)
-        @Html.HiddenFor(m => m.CustomerId)
-        @Html.HiddenFor(m => m.CustomerFirstName)
-        @Html.HiddenFor( m=> m.Id)
-        @Html.HiddenFor(m => m.CustomerLastName)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.VigorousGoal)
+        @Html.HiddenFor(model => model.currentVigorous)
+        @Html.HiddenFor(model => model.ModerateGoal)
+        @Html.HiddenFor(model => model.currentModerate)
+        @Html.HiddenFor(model => model.CustomerFirstName)
+        @Html.HiddenFor(model => model.CustomerLastName)
+        @Html.HiddenFor(model => model.CustomerId)
+        @Html.HiddenFor(model => model.Group)
 
         <div class="form-group">
-            @Html.Label("Confirm", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Read, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Read)
