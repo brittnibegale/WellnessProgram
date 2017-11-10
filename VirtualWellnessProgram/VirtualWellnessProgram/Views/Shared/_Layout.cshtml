@@ -41,7 +41,7 @@
     {
         ApplicationDbContext db = new ApplicationDbContext();
         var username = User.Identity.Name;
-        string currentUserId = db.Users.Where(m => m.UserName == username).Select(n => n.Id).ToString();
+        string currentUserId = db.Users.Where(m => m.UserName == username).Select(n => n.Id).First();
         var currentUser = db.Customers.Where(m => m.ApplicationUserId == currentUserId).First();
 
         if (currentUser.Captain == true)

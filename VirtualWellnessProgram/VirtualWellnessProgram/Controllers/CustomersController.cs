@@ -62,11 +62,16 @@ namespace VirtualWellnessProgram.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CustomerCreateViewModel viewModel1)
         {
-            if (ModelState.IsValid)
+            if (viewModel1.customer.GroupId != null)
             {
-                string code = viewModel1.user.Code;
-                string healthidstring = db.HealthInfoes.Where(m => m.UniqueCode == code).Select(m =>m.Id).ToString();
-                int healthid = Int32.Parse(healthidstring);
+
+                string userName = User.Identity.Name;
+                var userCode = db.Users.Where(m => m.UserName == userName).Select(m => m.Code).First();
+                var userId = db.Users.Where(m => m.UserName == userName).Select(m => m.Id).First();
+                string userCoderesult = userCode;
+                var healthidstring = db.HealthInfoes.Where(m => m.UniqueCode == userCoderesult).Select(m =>m.Id).First();
+                int healthid = healthidstring;
+
                 MakeNewUserGoals.Goals goals = new Goals();
                 double calories = goals.Calorie(healthid);
 
@@ -76,7 +81,7 @@ namespace VirtualWellnessProgram.Controllers
                 customer.LastName = viewModel1.customer.LastName;
                 customer.GroupId = viewModel1.customer.GroupId;
                 customer.CalorieGoal = calories;
-                customer.ApplicationUserId = viewModel1.user.Id;
+                customer.ApplicationUserId = userId;
                 customer.Captain = false;
                 customer.VigorousDuration = 75;
                 customer.ModerateDuration = 150;
@@ -95,7 +100,7 @@ namespace VirtualWellnessProgram.Controllers
                 db.Customers.Add(customer);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             CustomerCreateViewModel viewModel = new CustomerCreateViewModel();
             var username = User.Identity.Name;

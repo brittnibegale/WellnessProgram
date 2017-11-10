@@ -36,15 +36,16 @@ namespace VirtualWellnessProgram.MakeNewUserGoals
 
         public int GetAge(int healthid)
         {
-            string age = db.HealthInfoes.Where(m => m.Id == healthid).Select(m => m.Age).ToString();
-            int ageResult = Int32.Parse(age);
+            string age = db.HealthInfoes.Where(m => m.Id == healthid).Select(m => m.Age).First();
+            string ageResultTemp = Encryption.Encrytion.Decrypt(age);
+            int ageResult = Int32.Parse(ageResultTemp);
 
             return ageResult;
         }
 
         public double GetBodyFat(int healthid)
         {
-            string bodyfat = db.HealthInfoes.Where(m => m.Id == healthid).Select(m => m.BodyFatAmt).ToString();
+            string bodyfat = db.HealthInfoes.Where(m => m.Id == healthid).Select(m => m.BodyFatAmt).First();
             string bodyfatResultTemp = Encryption.Encrytion.Decrypt(bodyfat);
             double bodyFatResult = Double.Parse(bodyfatResultTemp);
 
@@ -53,7 +54,7 @@ namespace VirtualWellnessProgram.MakeNewUserGoals
 
         public string GetGender(int healthid)
         {
-            string gender = db.HealthInfoes.Where(m => m.Id == healthid).Select(m => m.Gender).ToString();
+            string gender = db.HealthInfoes.Where(m => m.Id == healthid).Select(m => m.Gender).First();
             string genderResult = Encryption.Encrytion.Decrypt(gender);
 
             return genderResult;
