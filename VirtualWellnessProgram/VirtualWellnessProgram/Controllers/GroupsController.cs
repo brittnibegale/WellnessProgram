@@ -159,22 +159,43 @@ namespace VirtualWellnessProgram.Controllers
 
         public ActionResult MyGroupsPoints()
         {
-            //var currentUserName = User.Identity.Name;
-            //var currentUserId = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).ToString();
-            //var currentCustomerIdString = db.Customers.Where(m => m.ApplicationUserId == currentUserId).Select(m => m.Id).ToString();
-            //var currentCustomerId = Int32.Parse(currentCustomerIdString);
-            //var currentCustomerGroupIdString = db.Customers.Where(m => m.Id == currentCustomerId).Select(m => m.GroupId).ToString();
-            //var currentCustomerGroupId = Int32.Parse(currentCustomerGroupIdString);
-            //var currentGroupExercise = db.Groups.Where(m => m.Id == currentCustomerGroupId).Select(m => m.GroupExercisePoints).ToString();
-            //var currentGroupCalorie = db.Groups.Where(m => m.Id == currentCustomerGroupId).Select(m =>m.GroupCaloriePoints).ToString();
-            //var currentGroupExcerisePoints = Double.Parse(currentGroupExercise);
-            //var currentGroupCaloriePoints = Double.Parse(currentGroupCalorie);
+            var currentUserName = User.Identity.Name;
+            var currentUserId = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).ToString();
+            var currentCustomerIdString = db.Customers.Where(m => m.ApplicationUserId == currentUserId).Select(m => m.Id).ToString();
+            var currentCustomerId = Int32.Parse(currentCustomerIdString);
+            var currentCustomerGroupIdString = db.Customers.Where(m => m.Id == currentCustomerId).Select(m => m.GroupId).ToString();
+            var currentCustomerGroupId = Int32.Parse(currentCustomerGroupIdString);
+            var currentGroupExercise = db.Groups.Where(m => m.Id == currentCustomerGroupId).Select(m => m.GroupExercisePoints).ToString();
+            var currentGroupCalorie = db.Groups.Where(m => m.Id == currentCustomerGroupId).Select(m => m.GroupCaloriePoints).ToString();
+            var currentGroupExcerisePoints = Double.Parse(currentGroupExercise);
+            var currentGroupCaloriePoints = Double.Parse(currentGroupCalorie);
 
             GroupMyGroupsPointsViewModel viewModel = new GroupMyGroupsPointsViewModel();
-            //viewModel.GroupCalorie = currentGroupCaloriePoints;
-            //viewModel.GroupExercise = currentGroupExcerisePoints;
-           
+            viewModel.GroupCalorie = currentGroupCaloriePoints;
+            viewModel.GroupExercise = currentGroupExcerisePoints;
+
             return View(viewModel);
+        }
+
+        public ActionResult EditGroupName()
+        {
+            var currentUsername = User.Identity.Name;
+            var currentUser = db.Users.Where(m => m.UserName == currentUsername).Select(m => m.Id).ToString();
+            var currentCustomerGroupIdString = db.Customers.Where(m => m.ApplicationUserId == currentUser).Select(m => m.GroupId).ToString();
+            var currentCustomerGroupId = Int32.Parse(currentCustomerGroupIdString);
+            var group = db.Groups.Where(m => m.Id == currentCustomerGroupId).First();
+
+            return View(group);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditGroupName(Group group)
+        {
+            db.Entry(group).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)

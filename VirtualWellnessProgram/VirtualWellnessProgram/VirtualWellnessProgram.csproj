@@ -482,6 +482,7 @@
     <Content Include="Views\ExerciseAlerts\Index.cshtml" />
     <Content Include="Views\CalorieAlerts\DenyEdit.cshtml" />
     <Content Include="Views\ExerciseAlerts\DenyEdit.cshtml" />
+    <Content Include="Views\Groups\EditGroupName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
