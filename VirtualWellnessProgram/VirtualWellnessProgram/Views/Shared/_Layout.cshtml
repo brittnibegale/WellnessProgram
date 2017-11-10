@@ -24,13 +24,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        @*<li>@Html.ActionLink("Edit Groups", "ChangeGroupId", "Customers")</li>*@
                         <li>@Html.ActionLink("Create Group", "Create", "Groups")</li>
                         <li>@Html.ActionLink("Manage Captain Roles", "ChangeCaptainStatus", "Customers")</li>
                         <li>@Html.ActionLink("Add CSV File", "Upload", "Home")</li>
                         <li>@Html.ActionLink("Requests", "Index", "Alerts")</li>
                         <li>@Html.ActionLink("Delete User", "Index", "Customers")</li>
-                        <li>@Html.ActionLink("View Database Changes", "ViewAuditRecords", "Home")</li>
+                        <li>@Html.ActionLink("Audit", "ViewAuditRecords", "Home")</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -64,7 +63,6 @@
                             <li>@Html.ActionLink("My Points", "Points","Customers")</li>
                             <li>@Html.ActionLink("Group Points", "MyGroupsPoints", "Groups")</li>
                             <li>@Html.ActionLink("Alerts", "Index", "CalorieAlerts")</li>
-                            @*<li>@Html.ActionLink("Exercise Alerts", "Index", "ExerciseAlerts")</li>*@
                             <li>@Html.ActionLink("Change Group", "EditGroupName", "Groups")</li>
                         </ul>
                         @Html.Partial("_LoginPartial")
@@ -86,11 +84,10 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Add Food", "GetFoodItem", "Customers")</li>
                             <li>@Html.ActionLink("Add Exercise", "AddExercise", "Customers")</li>
                             <li>@Html.ActionLink("Request Group Change", "Create", "Alerts")</li>
-                            <li>@Html.ActionLink("Leader Board", "Points", "Groups")</li>
+                            <li>@Html.ActionLink("Leaderboard", "Points", "Groups")</li>
                             <li>@Html.ActionLink("My Points", "Points","Customers")</li>
                             <li>@Html.ActionLink("My Groups Points", "MyGroupsPoints", "Groups")</li>
                         </ul>
