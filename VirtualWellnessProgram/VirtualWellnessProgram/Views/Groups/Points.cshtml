@@ -4,12 +4,15 @@
     ViewBag.Title = "LeaderBoard";
 }
 
-<h2>Leader Board</h2>
+<h2>Leaderboard</h2>
 
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(m => m.Group)
+        </th>
+        <th>
+            Points
         </th>
     </tr>
     @foreach (var item in Model.Group)

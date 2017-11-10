@@ -12,7 +12,7 @@
     
     <div class="form-horizontal">
         <h3>Edit this Alert</h3>
-    <p>Check the Read box and type the group name they want to be in. If the alert is not something you are capable of doing type "none".</p>
+        <p>Check the Read box and type the group name they want to be in. If the alert is not something you are capable of doing type "none" in the "Group Name" box.</p>
         <hr/>
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         @Html.HiddenFor(model => model.Alert.Id)
@@ -27,21 +27,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Alert.Read, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(m => m.Response, new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Response, new {htmlAttributes = new {@class = "form-control"}})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Alert.Read, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Alert.Read)
-                    @Html.ValidationMessageFor(model => model.Alert.Read, "", new {@class = "text-danger"})
+                    @Html.ValidationMessageFor(model => model.Alert.Read, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Response, new {@class = "control-label col-md-2"})
-        </div>
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Response, new {htmlAttributes = new {@class = "form-control"}})
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default"/>

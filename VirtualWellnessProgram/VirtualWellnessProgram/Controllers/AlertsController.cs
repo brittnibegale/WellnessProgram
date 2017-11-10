@@ -58,12 +58,11 @@ namespace VirtualWellnessProgram.Controllers
                 alert.Read = false;
                 var username = User.Identity.Name;
                 var currentUserId = db.Users.Where(m => m.UserName == username).Select(m => m.Id).First();
-                var currentCustomerIdString = db.Customers.Where(m => m.ApplicationUserId == currentUserId).Select(m => m.Id).ToString();
-                int currentCustomerId = Int32.Parse(currentCustomerIdString);
+                var currentCustomerId = db.Customers.Where(m => m.ApplicationUserId == currentUserId).Select(m => m.Id).First();
                 alert.CustomerId = currentCustomerId;
                 db.Alerts.Add(alert);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", alert.CustomerId);
