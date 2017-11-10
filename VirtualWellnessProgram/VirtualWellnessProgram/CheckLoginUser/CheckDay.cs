@@ -14,7 +14,7 @@ namespace VirtualWellnessProgram.CheckLoginUser
 
         public void FindCustomer(string UserName)
         {
-            var currentUserId= db.Users.Where(m => m.UserName == UserName).Select(m => m.Id).ToString();
+            var currentUserId= db.Users.Where(m => m.UserName == UserName).Select(m => m.Id).First();
             var currentCustomer = db.Customers.Where(m => m.ApplicationUserId == currentUserId).First();
 
             CheckCurrentDay(currentCustomer);

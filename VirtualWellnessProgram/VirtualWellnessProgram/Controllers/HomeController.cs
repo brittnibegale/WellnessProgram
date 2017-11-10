@@ -152,5 +152,15 @@ namespace VirtualWellnessProgram.Controllers
             var audits = new AuditingContext().AuditRecords;
             return View(audits);
         }
+
+        public ActionResult AddFoodExercise()
+        {
+            return View();
+        }
+
+        public ActionResult Alert()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model VirtualWellnessProgram.Models.Customer
+@{
+    ViewBag.Title = "ExerciseTotal";
+}
+
+<center><h2>My Current Exercise Status</h2></center>
+<table class="table">
+    <colgroup>
+        <tr>
+            <td>
+                <h4>Current Moderate Exercise Compeleted</h4>
+                @Html.DisplayFor(m => m.ModerateNumberToAdd)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Moderate Exercise Goal</h4>
+                @Html.DisplayFor(m => m.ModerateDuration)
+            </td>
+        </tr>
+    </colgroup>
+    <colgroup>
+        <tr>
+            <td>
+                <h4>Current Vigorous Exercise Compeleted</h4>
+                @Html.DisplayFor(m => m.VigorousNumberToAdd)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Moderate Exercise Goal</h4>
+                @Html.DisplayFor(m => m.VigorousDuration)
+            </td>
+        </tr>
+    </colgroup>
+</table>
+<center>@Html.ActionLink("Add More Exercise", "AddExercise", "Customers")</center>
+

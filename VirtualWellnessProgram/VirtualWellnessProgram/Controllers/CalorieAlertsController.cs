@@ -19,9 +19,8 @@ namespace VirtualWellnessProgram.Controllers
         public ActionResult Index()
         {
             var currentUserName = User.Identity.Name;
-            var currentUser = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).ToString();
-            var captainGroupString = db.Customers.Where(m => m.ApplicationUserId == currentUser).Select( m => m.GroupId).ToString();
-            var captainGroupId = Int32.Parse(captainGroupString);
+            var currentUser = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).First();
+            var captainGroupId = db.Customers.Where(m => m.ApplicationUserId == currentUser).Select( m => m.GroupId).First();
             var calorieAlerts = db.CalorieAlerts.Where(m => m.Group == captainGroupId && m.Read == false).Include(c => c.customer);
 
             return View(calorieAlerts.ToList());

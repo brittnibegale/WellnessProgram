@@ -58,16 +58,14 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Add Food", "GetFoodItem", "Customers")</li>
-                            <li>@Html.ActionLink("Add Exercise", "AddExercise", "Customers")</li>
-                            <li>@Html.ActionLink("Request Group Change", "Create", "Alerts")</li>
-                            <li>@Html.ActionLink("Leader Board", "Points", "Groups")</li>
+                            <li>@Html.ActionLink("Add Food/Exercise", "AddFoodExercise", "Home")</li>
+                            <li>@Html.ActionLink("Request Group", "Create", "Alerts")</li>
+                            <li>@Html.ActionLink("Leaderboard", "Points", "Groups")</li>
                             <li>@Html.ActionLink("My Points", "Points","Customers")</li>
-                            <li>@Html.ActionLink("My Groups Points", "MyGroupsPoints", "Groups")</li>
-                            <li>@Html.ActionLink("Calorie Alerts", "Index", "CalorieAlerts")</li>
-                            <li>@Html.ActionLink("Exercise Alerts", "Index", "ExerciseAlerts")</li>
-                            <li>@Html.ActionLink("Change Group Name", "EditGroupName", "Groups")</li>
+                            <li>@Html.ActionLink("Group Points", "MyGroupsPoints", "Groups")</li>
+                            <li>@Html.ActionLink("Alerts", "Index", "CalorieAlerts")</li>
+                            @*<li>@Html.ActionLink("Exercise Alerts", "Index", "ExerciseAlerts")</li>*@
+                            <li>@Html.ActionLink("Change Group", "EditGroupName", "Groups")</li>
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>

@@ -240,7 +240,7 @@ namespace VirtualWellnessProgram.Controllers
         public ActionResult Points()
         {
             var currentUsername = User.Identity.Name;
-            var currentUser = db.Users.Where(m => m.UserName == currentUsername).Select(m => m.Id).ToString();
+            var currentUser = db.Users.Where(m => m.UserName == currentUsername).Select(m => m.Id).First();
             var currentCustomer = db.Customers.Where(m => m.ApplicationUserId == currentUser).First();
 
             CustomerPointsViewModel viewModel = new CustomerPointsViewModel();
@@ -274,7 +274,7 @@ namespace VirtualWellnessProgram.Controllers
             var calories = info.Report.Foods[0].Nutrients[0].Value;
             double calorieResult = Math.Round(Double.Parse(calories));
             var userName = User.Identity.Name;
-            var currentUser = db.Users.Where(m => m.UserName == userName).Select(m => m.Id).ToString();
+            var currentUser = db.Users.Where(m => m.UserName == userName).Select(m => m.Id).First();
             var currentCustomer = db.Customers.Where(m => m.ApplicationUserId == currentUser).First();
            
             UpdateCustomer.UpdateCalories view = new UpdateCustomer.UpdateCalories();
@@ -295,9 +295,8 @@ namespace VirtualWellnessProgram.Controllers
         public ActionResult AddExercise(CustomerAddExerciseViewModel viewModel)
         {
             var currentUserName = User.Identity.Name;
-            var currentUserId = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).ToString();
-            var currentCustomerIdString = db.Customers.Where(m => m.ApplicationUserId == currentUserId).Select(m => m.Id).ToString();
-            var currentCustomerId = Int32.Parse(currentCustomerIdString);
+            var currentUserId = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).First();
+            var currentCustomerId = db.Customers.Where(m => m.ApplicationUserId == currentUserId).Select(m => m.Id).First();
             var currentCustomer = db.Customers.Where(m => m.Id == currentCustomerId).First();
             var moderate = viewModel.ModerateTraining;
             var vigorous = viewModel.VigorousTraining;
@@ -317,7 +316,16 @@ namespace VirtualWellnessProgram.Controllers
             db.Entry(currentCustomer).State = EntityState.Modified;
             db.SaveChanges();
 
-            return View(viewModel);
+            return RedirectToAction("ExerciseTotal");
+        }
+
+        public ActionResult ExerciseTotal()
+        {
+            var currentUserName = User.Identity.Name;
+            var currentUserId = db.Users.Where(m => m.UserName == currentUserName).Select(m => m.Id).First();
+            var currentCustomer = db.Customers.Where(m => m.ApplicationUserId == currentUserId).First();
+
+            return View(currentCustomer);
         }
 
         protected override void Dispose(bool disposing)

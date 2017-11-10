@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Alert";
+}
+
+<h2>My Groups Alerts</h2>
+
+<h4>Click a link below to view the alerts of your group members</h4>
+<hr />
+
+@Html.ActionLink("Calorie Alerts", "Index", "CalorieAlerts") |
+@Html.ActionLink("Exercise Alerts", "Index", "ExerciseAlerts")

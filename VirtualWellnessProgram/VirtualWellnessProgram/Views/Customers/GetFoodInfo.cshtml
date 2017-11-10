@@ -2,17 +2,19 @@
 @{
     ViewBag.Title = "GetFoodInfo";
 }
-
+<h2>Calorie Counter</h2>
 <table class="table">
     <tr>
-        <h4>Todays Current Calorie Count</h4>
         <td>
+        <h4>Today's Current Calorie Count</h4>
+        
             @Html.DisplayFor(m => m.CurrentCalorieCount)
         </td>
     </tr>
     <tr>
-        <h4>Your Calorie Goal</h4>
         <td>
+        <h4>Your Calorie Goal</h4>
+        
             @Html.DisplayFor(m => m.CalorieGoal)
         </td>
     </tr>
